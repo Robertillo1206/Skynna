@@ -61,6 +61,7 @@ nav ul li a {
     font-weight: bold;
     padding: 10px 20px;
     transition: 0.3s;
+    white-space: nowrap; /* Evita que el texto del botón se parta en dos líneas */
 }
 
 nav ul li a:hover {
@@ -284,69 +285,41 @@ footer {
 }
 
 /* ==========================================
-   NUEVOS AJUSTES PARA MÓVIL (RESPONSIVE)
+   AJUSTES RESPONSIVE (MANTENIENDO FORMATO)
    ========================================== */
 
 @media (max-width: 768px) {
-    header {
-        padding: 30px 15px;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    .main-logo {
-        width: 90px;
-    }
-
-    /* Menú: Apilar enlaces para que no se amontonen */
+    /* MENÚ: Se queda horizontal pero con scroll si no cabe */
     nav ul {
-        flex-direction: column;
-        padding: 10px 0;
+        justify-content: flex-start; /* Alinea al inicio para el scroll */
+        overflow-x: auto; /* Permite deslizar si los botones son muchos */
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 15px;
     }
 
     nav ul li a {
-        padding: 10px;
-        display: block;
-        text-align: center;
+        padding: 8px 15px;
+        font-size: 0.85rem;
     }
 
-    /* Próximo Partido: Ajustar teams */
-    .team {
-        font-size: 1.4rem;
-        display: block;
-    }
+    /* CABECERA MÁS PEQUEÑA */
+    header { padding: 25px 10px; }
+    h1 { font-size: 1.8rem; }
+    .main-logo { width: 80px; }
 
-    .vs {
-        margin: 10px 0;
-        display: block;
-    }
+    /* PRÓXIMO PARTIDO: Evitar desbordamiento */
+    .match-card { padding: 20px; }
+    .team { font-size: 1.3rem; display: block; } /* Un equipo sobre otro solo si es muy estrecho */
+    .vs { margin: 10px 0; display: block; }
 
-    /* Plantilla: Mostrar de 2 en 2 para que se vea mejor */
+    /* PLANTILLA: 2 columnas fijas para que se vea ordenado */
     .grid-players {
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        gap: 10px;
     }
+    .player-card { height: 220px; }
 
-    .player-card {
-        height: 250px;
-    }
-
-    /* Carrusel: Quitar flechas y permitir scroll táctil */
-    .carousel-control {
-        display: none; 
-    }
-
-    .photo-item {
-        flex: 0 0 85%;
-    }
-
-    section {
-        padding: 40px 15px;
-    }
-
-    .section-title {
-        font-size: 1.6rem;
-    }
+    /* CARRUSEL: Ajuste de ancho de fotos */
+    .photo-item { flex: 0 0 85%; }
+    .carousel-control { display: none; } /* En móvil se desliza con el dedo */
 }
