@@ -196,7 +196,7 @@ section {
     margin-top: auto;
 }
 
-/* --- ESTILOS NUEVOS DEL CARRUSEL --- */
+/* CARRUSEL */
 .carousel-wrapper {
     position: relative;
     display: flex;
@@ -209,15 +209,15 @@ section {
     overflow-x: auto;
     scroll-behavior: smooth;
     padding: 10px 0;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
 }
 
 .photo-carousel::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
 }
 
 .photo-item {
-    flex: 0 0 300px; /* Ancho de cada imagen */
+    flex: 0 0 300px;
 }
 
 .photo-item img {
@@ -228,11 +228,6 @@ section {
     border-radius: 4px;
     transition: 0.3s;
     cursor: pointer;
-}
-
-.photo-item img:hover {
-    border-color: var(--rojo);
-    transform: scale(1.02);
 }
 
 .carousel-control {
@@ -247,10 +242,6 @@ section {
     position: absolute;
     z-index: 5;
     transition: 0.3s;
-}
-
-.carousel-control:hover {
-    background: var(--rojo);
 }
 
 .prev { left: -20px; }
@@ -292,7 +283,70 @@ footer {
     padding: 40px 20px;
 }
 
+/* ==========================================
+   NUEVOS AJUSTES PARA MÓVIL (RESPONSIVE)
+   ========================================== */
+
 @media (max-width: 768px) {
-    .carousel-control { display: none; } /* En móvil se desliza con el dedo */
-    .photo-item { flex: 0 0 85%; }
+    header {
+        padding: 30px 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .main-logo {
+        width: 90px;
+    }
+
+    /* Menú: Apilar enlaces para que no se amontonen */
+    nav ul {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    nav ul li a {
+        padding: 10px;
+        display: block;
+        text-align: center;
+    }
+
+    /* Próximo Partido: Ajustar teams */
+    .team {
+        font-size: 1.4rem;
+        display: block;
+    }
+
+    .vs {
+        margin: 10px 0;
+        display: block;
+    }
+
+    /* Plantilla: Mostrar de 2 en 2 para que se vea mejor */
+    .grid-players {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .player-card {
+        height: 250px;
+    }
+
+    /* Carrusel: Quitar flechas y permitir scroll táctil */
+    .carousel-control {
+        display: none; 
+    }
+
+    .photo-item {
+        flex: 0 0 85%;
+    }
+
+    section {
+        padding: 40px 15px;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
 }
