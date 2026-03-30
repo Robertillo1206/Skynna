@@ -5,6 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendario - Skynna FC</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .calendario-main {
+            background-color: #ffffff; /* Tu fondo blanco */
+            padding: 40px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            color: #000000; /* Tu título negro */
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 40px 0 10px 0;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        /* --- CABECERAS DE MES --- */
+        .month-divider {
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(204, 0, 0, 0.1);
+            border-left: 4px solid #cc0000;
+            padding: 10px 20px;
+            margin: 30px 0 15px 0;
+            color: #000000; /* Texto de mes en negro */
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .match-group {
+            width: 100%;
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .match-card {
+            background: #1e1e1e;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .match-card:hover {
+            transform: translateY(-5px);
+            border-color: #cc0000;
+            box-shadow: 0 10px 20px rgba(204, 0, 0, 0.2);
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .match-teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .team {
+            flex: 1;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .vs-score {
+            flex: 0.5;
+            text-align: center;
+            background: #444;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin: 0 10px;
+            min-width: 70px;
+        }
+
+        .win { background: #2e7d32; }
+        .loss { background: #cc0000; }
+        .draw { background: #666; }
+
+        @media (max-width: 768px) {
+            .match-group { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -19,149 +127,147 @@
     <nav>
         <ul>
             <li><a href="index.html">INICIO</a></li>
-            <li><a href="calendario.html">CALENDARIO</a></li>
-            <li><a href="plantilla.html" class="active">PLANTILLA</a></li>
+            <li><a href="calendario.html" class="active">CALENDARIO</a></li>
+            <li><a href="plantilla.html">PLANTILLA</a></li>
             <li><a href="index.html#galeria">GALERÍA</a></li>
         </ul>
     </nav>
 
-    <main>
-        <section id="calendario">
-            <h2 class="section-title">CALENDARIO Y RESULTADOS</h2>
-            <div class="table-container">
-                <table class="results-table">
-                    <thead>
-                        <tr>
-                            <th>FECHA</th>
-                             <th>RIVAL</th>
-                            <th>RESULTADO</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>-/-/2026</td>
-                            <td>Gnomos</td>
-                            <td class="draw">-</td>
-                        </tr>
-                        <tr>
-                            <td>-/-/2026</td>
-                            <td>Clasic</td>
-                            <td class="draw">-</td>
-                        </tr>
-                        <tr>
-                            <td>-/-/2026</td>
-                            <td>U.D. Valdebirra</td>
-                            <td class="draw">-</td>
-                        </tr>
-                        <tr>
-                            <td>-/-/2026</td>
-                            <td>Nottingham Miedo</td>
-                            <td class="draw">-</td>
-                        </tr>
-                        <tr>
-                            <td>12/04/2026</td>
-                            <td>Malamen</td>
-                            <td class="draw">-</td>
-                        </tr>
-                        <tr>
-                            <td>28/03/2026</td>
-                            <td>Las Grullas Asesinas</td>
-                            <td class="win">3 - 0</td>
-                        </tr>
-                        <tr>
-                            <td>21/03/2026</td>
-                            <td>La 035</td>
-                            <td class="draw">3 - 3</td>
-                        </tr>
-                        <tr>
-                            <td>15/03/2026</td>
-                            <td>Eskombros</td>
-                            <td class="loss">1 - 2</td>
-                        </tr>
-                        <tr>
-                            <td>08/03/2026</td>
-                            <td>Aktivos By Agisa</td>
-                            <td class="loss">1 - 4</td>
-                        </tr>
-                        <tr>
-                            <td>01/03/2026</td>
-                            <td>Stoners</td>
-                            <td class="win">6 - 1</td>
-                        </tr>
-                        <tr>
-                            <td>22/02/2026</td>
-                            <td>Radical Panokos Fc</td>
-                            <td class="draw">2 - 2</td>
-                        </tr>
-                        <tr>
-                            <td>15/02/2026</td>
-                            <td>Monte</td>
-                            <td class="loss">0 - 2</td>
-                        </tr>
-                        <tr>
-                            <td>07/02/2026</td>
-                            <td>Clasic</td>
-                            <td class="win">2 - 1</td>
-                        </tr>
-                        <tr>
-                            <td>01/02/2026</td>
-                            <td>Gnomos</td>
-                            <td class="win">3 - 2</td>
-                        </tr>
-                        <tr>
-                            <td>17/01/2026</td>
-                            <td>U.D. Valdebirra</td>
-                            <td class="win">6 - 3</td>
-                        </tr>
-                        <tr>
-                            <td>21/12/2025</td>
-                            <td>Nottingham Miedo</td>
-                            <td class="loss">3 - 4</td>
-                        </tr>
-                        <tr>
-                            <td>30/11/2025</td>
-                            <td>Malamen</td>
-                            <td class="loss">2 - 3</td>
-                        </tr>
-                        <tr>
-                            <td>23/11/2025</td>
-                            <td>La 035</td>
-                            <td class="win">5 - 3</td>
-                        </tr>
-                        <tr>
-                            <td>16/11/2025</td>
-                            <td>Eskombros</td>
-                            <td class="win">5 - 1</td>
-                        </tr>
-                        <tr>
-                            <td>09/11/2025</td>
-                            <td>Aktivos By Agisa</td>
-                            <td class="win">6 - 5</td>
-                        </tr>
-                        <tr>
-                            <td>26/10/2025</td>
-                            <td>Stoners</td>
-                            <td class="loss">1 - 4</td>
-                        </tr>
-                        <tr>
-                            <td>18/10/2025</td>
-                            <td>Radikal Panokos Fc</td>
-                            <td class="win">2 - 1</td>
-                        </tr>
-                        <tr>
-                            <td>12/10/2025</td>
-                            <td>Monte</td>
-                            <td class="draw">5 - 5</td>
-                        </tr>
-                        <tr>
-                            <td>04/10/2025</td>
-                            <td>Las Grullas Asesinas</td>
-                            <td class="win">7 - 0</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <main class="calendario-main">
+        
+        <h2 class="section-title">Temporada 2025/26</h2>
+
+        <!-- ABRIL 2026 -->
+        <div class="month-divider">Abril 2026 <span>Próximamente</span></div>
+        <div class="match-group">
+            <div class="match-card">
+                <div class="match-header"><span style="color:#ff0707">12/04/2026</span><span>LIGA</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score">VS</div><div class="team">Malamen</div></div>
             </div>
-        </section>
+            <div class="match-card">
+                <div class="match-header"><span>-/-/2026</span><span>LIGA</span></div>
+                <div class="match-teams"><div class="team">Nottingham Miedo</div><div class="vs-score">VS</div><div class="team">Skynna FC</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>-/-/2026</span><span>LIGA</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score">VS</div><div class="team">U.D. Valdebirra</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>-/-/2026</span><span>LIGA</span></div>
+                <div class="match-teams"><div class="team">Clasic</div><div class="vs-score">VS</div><div class="team">Skynna FC</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>-/-/2026</span><span>LIGA</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score">VS</div><div class="team">Gnomos</div></div>
+            </div>
+        </div>
+
+        <!-- MARZO 2026 -->
+        <div class="month-divider">Marzo 2026</div>
+        <div class="match-group">
+            <div class="match-card">
+                <div class="match-header"><span>28/03/2026</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score win">3 - 0</div><div class="team">L.G. Asesinas</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>21/03/2026</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">La 035</div><div class="vs-score draw">3 - 3</div><div class="team">Skynna FC</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>15/03/2026</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score loss">1 - 2</div><div class="team">Eskombros</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>08/03/2026</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score loss">1 - 4</div><div class="team">Aktivos By Agisa</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>01/03/2026</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score win">6 - 1</div><div class="team">Stoners</div></div>
+            </div>
+        </div>
+
+        <!-- FEBRERO 2026 -->
+        <div class="month-divider">Febrero 2026</div>
+        <div class="match-group">
+            <div class="match-card">
+                <div class="match-header"><span>22/02/2026</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Panokos FC</div><div class="vs-score draw">2 - 2</div><div class="team">Skynna FC</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>15/02/2026</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score loss">0 - 2</div><div class="team">Monte</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>07/02/2026</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score win">2 - 1</div><div class="team">Clasic</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>01/02/2026</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score win">3 - 2</div><div class="team">Gnomos</div></div>
+            </div>
+        </div>
+
+        <!-- ENERO 2026 -->
+        <div class="month-divider">Enero 2026</div>
+        <div class="match-group">
+            <div class="match-card">
+                <div class="match-header"><span>17/01/2026</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score win">6 - 3</div><div class="team">U.D. Valdebirra</div></div>
+            </div>
+        </div>
+
+        <!-- DICIEMBRE 2025 -->
+        <div class="month-divider">Diciembre 2025</div>
+        <div class="match-group">
+            <div class="match-card">
+                <div class="match-header"><span>21/12/2025</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score loss">3 - 4</div><div class="team">Nottingham Miedo</div></div>
+            </div>
+        </div>
+
+        <!-- NOVIEMBRE 2025 -->
+        <div class="month-divider">Noviembre 2025</div>
+        <div class="match-group">
+            <div class="match-card">
+                <div class="match-header"><span>30/11/2025</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score loss">2 - 3</div><div class="team">Malamen</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>23/11/2025</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score win">5 - 3</div><div class="team">La 035</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>16/11/2025</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score win">5 - 1</div><div class="team">Eskombros</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>09/11/2025</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score win">6 - 5</div><div class="team">Aktivos By Agisa</div></div>
+            </div>
+        </div>
+
+        <!-- OCTUBRE 2025 -->
+        <div class="month-divider">Octubre 2025</div>
+        <div class="match-group">
+            <div class="match-card">
+                <div class="match-header"><span>26/10/2025</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score loss">1 - 4</div><div class="team">Stoners</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>18/10/2025</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score win">2 - 1</div><div class="team">Radikal Panokos FC</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>12/10/2025</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Monte</div><div class="vs-score draw">5 - 5</div><div class="team">Skynna FC</div></div>
+            </div>
+            <div class="match-card">
+                <div class="match-header"><span>04/10/2025</span><span>FINALIZADO</span></div>
+                <div class="match-teams"><div class="team">Skynna FC</div><div class="vs-score win">7 - 0</div><div class="team">L.G. Asesinas</div></div>
+            </div>
+        </div>
+
     </main>
 
     <footer>
