@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skynna FC - Plantilla Oficial</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- ESTILOS DE RETRANSMISIÓN TV (TÁCTICOS) --- */
+
+        .tv-broadcast-container {
+            background-color: #ffffff;
+            /* Fondo oscuro coherente con tu web */
+            padding: 40px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            
+        }
+
+        .tv-main-title {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        /* Título de temporada más grande como pediste */
+        .tv-subtitle {
+            color: #000000;
+            /* Tu rojo Skynna */
+            font-weight: 900;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* EL CAMPO TÁCTICO */
+        .tactical-grid {
+            width: 100%;
+            max-width: 1100px;
+            background-color: #2e7d32;
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column-reverse;
+            /* Portero abajo, Delanteros arriba */
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Césped bicolor */
+        .tactical-grid::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(to bottom,
+                    #2e7d32,
+                    #2e7d32 12.5%,
+                    #266b2a 12.5%,
+                    #266b2a 25%);
+            z-index: 1;
+        }
+
+        /* LÍNEAS DE POSICIÓN */
+        .position-line {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 2;
+            border-top: 2px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .position-line::after {
+            content: attr(data-position);
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Alturas para escritorio */
+        .line-goalkeeper {
+            height: 20%;
+            border-top: none;
+        }
+
+        .line-defense {
+            height: 35%;
+        }
+
+        .line-midfield {
+            height: 25%;
+        }
+
+        .line-attack {
+            height: 20%;
+        }
+
+        /* Ajuste de tus Player Cards originales para el campo */
+        .tactical-grid .player-card {
+            width: 160px;
+            height: 220px;
+            margin: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tactical-grid .player-card:hover {
+            border-color: #cc0000;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- MEDIA QUERIES PARA MÓVIL --- */
+        @media (max-width: 768px) {
+            .tv-main-title {
+                font-size: 1.6rem;
+            }
+
+            .tv-subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+            }
+
+            .tactical-grid {
+                height: auto;
+                min-height: 800px;
+                border-width: 3px;
+            }
+
+            .position-line {
+                padding: 45px 5px 15px 5px;
+                height: auto !important;
+            }
+
+            .position-line::after {
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0, 0, 0, 0.4);
+                padding: 2px 12px;
+                border-radius: 10px;
+                color: #fff;
+            }
+
+            /* Tarjetas pequeñas en móvil para que quepan */
+            .tactical-grid .player-card {
+                width: 100px;
+                height: 140px;
+                margin: 5px;
+            }
+
+            .tactical-grid .player-info-overlay h3 {
+                font-size: 0.75rem;
+            }
+
+            .tactical-grid .player-info-overlay p {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .tactical-grid .player-card {
+                width: 85px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CABECERA ORIGINAL -->
+    <header>
+        <div class="header-content">
+            <a href="index.html">
+                <img src="escudo.png" alt="Logo Skynna FC" class="main-logo">
+            </a>
+            <h1>SKYNNA FC</h1>
+        </div>
+    </header>
+
+    <!-- MENÚ ORIGINAL -->
+    <nav>
+        <ul>
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="calendario.html">CALENDARIO</a></li>
+            <li><a href="plantilla.html" class="active">PLANTILLA</a></li>
+            <li><a href="index.html#galeria">GALERÍA</a></li>
+        </ul>
+    </nav>
+
+    <main class="tv-broadcast-container">
+        <h1 class="tv-main-title">CONVOCATORIA OFICIAL</h1>
+        <p class="tv-subtitle">PLANTILLA | Temporada 2025-2026</p>
+        <div class="tactical-grid">
+
+            <!-- PORTEROS -->
+            <div class="position-line line-goalkeeper" data-position="Portero">
+                <div class="player-card">
+                    <img src="Guille.jpeg" alt="Foto de Guille" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Guille</h3>
+                        <p>Portero | 13</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEFENSAS -->
+            <div class="position-line line-defense" data-position="Defensa">
+                <div class="player-card"><img src="erik.jpeg" alt="Erik" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Erik</h3>
+                        <p>Defensa | 2</p>
+                    </div>
+                </div>
+                <div class="player-card"><img src="deivo.jpeg" alt="David" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>David</h3>
+                        <p>Defensa | 5</p>
+                    </div>
+                </div>
+                <div class="player-card"><img src="fer.jpeg" alt="Fernando" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Fernando</h3>
+                        <p>Defensa | 9</p>
+                    </div>
+                </div>
+                <div class="player-card"><img src="Pedmad.jpeg" alt="Pedmad" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Pedmad</h3>
+                        <p>Defensa | 14</p>
+                    </div>
+                </div>
+                <div class="player-card"><img src="rafa.jpeg" alt="Rafael" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Rafael</h3>
+                        <p>Defensa | 21</p>
+                    </div>
+                </div>
+                <div class="player-card"><img src="alex.jpg" alt="Alex" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Alex</h3>
+                        <p>Defensa | 23</p>
+                    </div>
+                </div>
+                <div class="player-card"><img src="roberto.jpeg" alt="Roberto" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Roberto</h3>
+                        <p>Defensa | 32</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MEDIOS -->
+            <div class="position-line line-midfield" data-position="Mediocampo">
+
+                <div class="player-card"><img src="Mateo.jpeg" alt="Mateo" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Mateo</h3>
+                        <p>Medio | 4</p>
+                    </div>
+                </div>
+                <div class="player-card"><img src="Jorge.jpeg" alt="Jorge" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Jorge</h3>
+                        <p>Medio | 7</p>
+                    </div>
+                </div>
+                <div class="player-card"><img src="Velasco.jpeg" alt="Velasco" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Velasco</h3>
+                        <p>Medio | 10</p>
+                    </div>
+                </div>
+                <div class="player-card"><img src="Javato.jpeg" alt="Javato" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Javato</h3>
+                        <p>Defensa | 16</p>
+                    </div>
+                </div>
+                <div class="player-card"><img src="Menen.jpeg" alt="Menen" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Menen</h3>
+                        <p>Medio | 95</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DELANTEROS -->
+            <div class="position-line line-attack" data-position="Ataque">
+                <div class="player-card"><img src="Daniel.jpeg" alt="Daniel" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Daniel</h3>
+                        <p>Delantero | 3</p>
+                    </div>
+                </div>
+                <div class="player-card"><img src="Miki.jpeg" alt="Miki" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Miki</h3>
+                        <p>Delantero | 8</p>
+                    </div>
+                </div>
+                <div class="player-card"><img src="Nico.jpeg" alt="Nico" class="player-photo-bg">
+                    <div class="player-info-overlay">
+                        <h3>Nico</h3>
+                        <p>Delantero | 11</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SKYNNA FC | Pasión por el fútbol</p>
+    </footer>
+
+</body>
+
+</html>
