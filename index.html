@@ -7,48 +7,94 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* Estilos para la sección de patrocinadores */
-    .sponsors-section {
-        background: #ffffff;
-        padding: 30px 0;
-        text-align: center;
-    }
+        .sponsors-section {
+            background: #ffffff;
+            padding: 30px 0;
+            text-align: center;
+        }
 
-    .sponsors-grid {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 30px; /* Espacio entre logos */
-        flex-wrap: wrap;
-        padding: 10px;
-    }
+        .sponsors-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
 
-    .sponsor-item {
-        width: 120px;  /* Ancho fijo para que sean iguales */
-        height: 80px;  /* Alto fijo */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        .sponsor-item {
+            width: 120px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .sponsor-item a {
-        display: block;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        .sponsor-item a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .sponsor-item img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain; /* Esto evita que el logo se deforme */
-        transition: transform 0.3s ease;
-    }
+        .sponsor-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
 
-    .sponsor-item img:hover {
-        transform: scale(1.1); /* Efecto zoom suave al pasar el ratón */
-    }
+        .sponsor-item img:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- ESTILOS PARA AMPLIAR LAS FOTOS (MODAL) --- */
+        .photo-item img {
+            cursor: pointer; /* Indica que se puede hacer clic */
+            transition: opacity 0.3s;
+        }
+        
+        .photo-item img:hover {
+            opacity: 0.9;
+        }
+
+        .modal-zoom {
+            display: none; 
+            position: fixed;
+            z-index: 10000; /* Por encima de todo */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .modal-zoom img {
+            max-width: 90%;
+            max-height: 85%;
+            border: 4px solid white;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            animation: zoomAnim 0.3s ease;
+        }
+
+        @keyframes zoomAnim {
+            from {transform: scale(0.7); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .close-zoom {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -58,7 +104,7 @@
             <li><a href="#proximo">INICIO</a></li>
             <li><a href="calendario.html">CALENDARIO</a></li>
             <li><a href="plantilla.html">PLANTILLA</a></li>
-            <li><a href="#galeria">GALERIA</a></li>
+            <li><a href="tercer tiempo.html">TERCER TIEMPO</a></li>
         </ul>
     </nav>
     <main>
@@ -70,6 +116,7 @@
                 <div class="match-details"><p>Domingo 12 de abril | 21:00h</p><p>Estadio Municipal Arroyofresno</p></div>
             </div>
         </section>
+
         <section id="galeria">
             <h2 class="section-title">EQUIPO</h2>
             <div class="carousel-wrapper">
@@ -94,23 +141,50 @@
                 <button class="carousel-control next" id="nextBtn">&#10095;</button>
             </div>
         </section>
+
         <section class="sponsors-section">
-    <h2 class="section-title" style="font-size: 1.2rem; color: #666; margin-bottom: 20px;">NUESTROS PATROCINADORES</h2>
-    <div class="sponsors-grid">
-        <div class="sponsor-item">
-            <a href="https://www.tuvain.es/" target="_blank">
-                <img src="tuvaninsa.png" alt="Tuvainsa">
-            </a>
-        </div>
-        <div class="sponsor-item">
-            <a href="https://www.facebook.com/carniceriadequevedo/?locale=es_ES" target="_blank">
-                <img src="Quevedo.png" alt="Carnicería Quevedo">
-            </a>
-        </div>
-    </div>
-</section>
+            <h2 class="section-title" style="font-size: 1.2rem; color: #666; margin-bottom: 20px;">NUESTROS PATROCINADORES</h2>
+            <div class="sponsors-grid">
+                <div class="sponsor-item">
+                    <a href="https://www.tuvain.es/" target="_blank">
+                        <img src="tuvaninsa.png" alt="Tuvainsa">
+                    </a>
+                </div>
+                <div class="sponsor-item">
+                    <a href="https://www.facebook.com/carniceriadequevedo/?locale=es_ES" target="_blank">
+                        <img src="Quevedo.png" alt="Carnicería Quevedo">
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <div id="zoomContainer" class="modal-zoom">
+        <span class="close-zoom">&times;</span>
+        <img id="imgAmpliada">
+    </div>
+
     <script src="script.js"></script>
+    
+    <script>
+        // SCRIPT PARA AMPLIAR LAS FOTOS DEL CARRUSEL
+        const zoomContainer = document.getElementById('zoomContainer');
+        const imgAmpliada = document.getElementById('imgAmpliada');
+        const carouselPhotos = document.querySelectorAll('.photo-item img');
+
+        carouselPhotos.forEach(foto => {
+            foto.addEventListener('click', () => {
+                zoomContainer.style.display = 'flex';
+                imgAmpliada.src = foto.src;
+            });
+        });
+
+        // Cerrar al hacer clic en cualquier parte del modal
+        zoomContainer.addEventListener('click', () => {
+            zoomContainer.style.display = 'none';
+        });
+    </script>
+
     <footer><p>© 2026 SKYNNA FC | Pasión por el fútbol</p></footer>
 </body>
 </html>
