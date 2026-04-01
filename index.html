@@ -1,85 +1,116 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skynna FC - Sitio Oficial</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos para la sección de patrocinadores */
+    .sponsors-section {
+        background: #ffffff;
+        padding: 30px 0;
+        text-align: center;
+    }
+
+    .sponsors-grid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px; /* Espacio entre logos */
+        flex-wrap: wrap;
+        padding: 10px;
+    }
+
+    .sponsor-item {
+        width: 120px;  /* Ancho fijo para que sean iguales */
+        height: 80px;  /* Alto fijo */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sponsor-item a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sponsor-item img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain; /* Esto evita que el logo se deforme */
+        transition: transform 0.3s ease;
+    }
+
+    .sponsor-item img:hover {
+        transform: scale(1.1); /* Efecto zoom suave al pasar el ratón */
+    }
+    </style>
 </head>
-
 <body>
-
-    <!-- CABECERA PRINCIPAL -->
-    <header>
-        <div class="header-content">
-            <img src="escudo.png" alt="Logo Skynna FC" class="main-logo">
-            <h1>SKYNNA FC</h1>
-        </div>
-    </header>
-
-    <!-- menu -->
+    <header><div class="header-content"><img src="escudo.png" class="main-logo"><h1>SKYNNA FC</h1></div></header>
     <nav>
         <ul>
             <li><a href="#proximo">INICIO</a></li>
-            <!-- CAMBIO: Ahora apunta al archivo externo calendario.html -->
             <li><a href="calendario.html">CALENDARIO</a></li>
             <li><a href="plantilla.html">PLANTILLA</a></li>
-            <li><a href="#galeria">GALERÍA</a></li>
+            <li><a href="#galeria">GALERIA</a></li>
         </ul>
     </nav>
-
     <main>
-        <!-- SECCIÓN PRÓXIMO PARTIDO -->
         <section id="proximo">
             <h2 class="section-title">PRÓXIMO ENCUENTRO</h2>
             <div class="match-card">
                 <p>Jornada 21</p>
-                <div class="team">Skynna FC</div>
-                <div class="vs">VS</div>
-                <div class="team">Malamen</div>
-                <div class="match-details">
-                    <p>Domingo 12 de abril | 21:00h</p>
-                    <p>Estadio Municipal Arroyofresno</p>
-                </div>
+                <div class="team">Skynna FC</div><div class="vs">VS</div><div class="team">Malamen</div>
+                <div class="match-details"><p>Domingo 12 de abril | 21:00h</p><p>Estadio Municipal Arroyofresno</p></div>
             </div>
         </section>
-        <!-- Fotos equipo - Carrusel -->
         <section id="galeria">
             <h2 class="section-title">EQUIPO</h2>
             <div class="carousel-wrapper">
                 <button class="carousel-control prev" id="prevBtn">&#10094;</button>
                 <div class="photo-carousel" id="carousel">
-                    <div class="photo-item"><img src="Grupo.jpeg" alt="Grupo"></div>
-                    <div class="photo-item"><img src="Grupo1.jpeg" alt="Grupo1"></div>
-                    <div class="photo-item"><img src="Grupo2.jpeg" alt="Grupo2"></div>
-                    <div class="photo-item"><img src="Grupo3.jpeg" alt="Grupo3"></div>
-                    <div class="photo-item"><img src="Grupo4.jpeg" alt="Grupo4"></div>
-                    <div class="photo-item"><img src="Grupo5.jpeg" alt="Grupo5"></div>
-                    <div class="photo-item"><img src="Grupo6.jpeg" alt="Grupo6"></div>
-                    <div class="photo-item"><img src="Grupo7.jpeg" alt="Grupo7"></div>
-                    <div class="photo-item"><img src="Grupo8.jpeg" alt="Grupo8"></div>
-                    <div class="photo-item"><img src="Grupo9.jpeg" alt="Grupo9"></div>
-                    <div class="photo-item"><img src="Grupo10.jpeg" alt="Grupo10"></div>
-                    <div class="photo-item"><img src="Grupo11.jpeg" alt="Grupo11"></div>
-                    <div class="photo-item"><img src="Grupo12.jpeg" alt="Grupo12"></div>
-                    <div class="photo-item"><img src="Grupo13.jpeg" alt="Grupo13"></div>
-                    <div class="photo-item"><img src="Grupo14.jpeg" alt="Grupo14"></div>
+                    <div class="photo-item"><img src="Grupo.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo1.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo2.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo3.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo4.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo5.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo6.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo7.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo8.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo9.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo10.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo11.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo12.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo13.jpeg"></div>
+                    <div class="photo-item"><img src="Grupo14.jpeg"></div>
                 </div>
                 <button class="carousel-control next" id="nextBtn">&#10095;</button>
             </div>
         </section>
-    </main>
-
-    <div id="galeria-modal" class="modal">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="img-ampliada">
+        <section class="sponsors-section">
+    <h2 class="section-title" style="font-size: 1.2rem; color: #666; margin-bottom: 20px;">NUESTROS PATROCINADORES</h2>
+    <div class="sponsors-grid">
+        <div class="sponsor-item">
+            <a href="https://www.tuvain.es/" target="_blank">
+                <img src="tuvaninsa.png" alt="Tuvainsa">
+            </a>
+        </div>
+        <div class="sponsor-item">
+            <a href="https://www.facebook.com/carniceriadequevedo/?locale=es_ES" target="_blank">
+                <img src="Quevedo.png" alt="Carnicería Quevedo">
+            </a>
+        </div>
     </div>
-
-    <footer>
-        <p>&copy; 2026 SKYNNA FC | Pasión por el fútbol</p>
-    </footer>
-
+</section>
+    </main>
     <script src="script.js"></script>
+    <footer><p>© 2026 SKYNNA FC | Pasión por el fútbol</p></footer>
 </body>
 </html>
