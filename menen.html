@@ -33,16 +33,61 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
+        /* --- CONTENEDOR IMAGEN PRINCIPAL (MODIFICADO PARA BRAZALETE) --- */
         .perfil-img-container { 
             flex: 1; 
             max-width: 450px; 
             background: #000;
+            position: relative; /* Necesario para posicionar el brazalete */
+            overflow: hidden;   /* Para que el brazalete no salga de la esquina redondeada */
+            perspective: 1000px; /* Importante para el efecto 3D del brazalete */
         }
+        
         .perfil-img-container img { 
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
             display: block; 
+            z-index: 1; /* Imagen en fondo */
+        }
+
+        /* --- ESTILOS DEL BRAZALETE DE CAPITÁN (EFECTO VOLUMEN) --- */
+        .perfil-img-container::before {
+            content: "Capitán"; 
+            position: absolute;
+            top: 25px;      
+            left: -40px;    
+            width: 150px;   
+            height: 38px;   /* Un poco más ancho */
+            background-color: #f1f1f1; /* Negro casi puro */
+            color: #000000;           
+            border: 3px solid #000000; /* Borde más grueso y rojo */
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px; /* C un poco más grande */
+            font-weight: bold;
+            font-family: 'Georgia', serif; 
+            
+            /* -- Transformaciones 3D para efecto real -- */
+            /* Rotación diagonal + sutil perspectiva 3D */
+            transform: rotate(-45deg) rotateY(10deg) translateZ(5px); 
+            
+            /* -- Sombras complejas para volumen real -- */
+            /* 1. Sombra principal debajo */
+            /* 2. Sombra más suave difusa */
+            /* 3. Brillo sutil en el borde dorado */
+            box-shadow: 
+                0 6px 8px rgba(0,0,0,0.7),    /* Sombra profunda */
+                0 15px 25px rgba(0,0,0,0.4),   /* Sombra difusa lejana */
+                inset 0 0 10px rgba(212,175,55, 0.2); /* Sutil brillo dorado interior */
+            
+            /* Sombra a la propia letra C para que parezca bordada */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            
+            z-index: 2; /* Por encima de la foto */
+            border-radius: 4px; /* Esquinas ligeramente suavizadas */
         }
 
         .perfil-info { 
@@ -160,6 +205,15 @@
             .carrusel-item { min-width: 80%; } 
             .descripcion-container { overflow-y: visible; max-height: none; }
             .nav-carrusel { width: 35px; height: 35px; font-size: 16px; }
+            
+            /* Ajuste ligero del brazalete en móvil */
+            .perfil-img-container::before {
+                top: 15px;
+                left: -50px;
+                width: 140px;
+                height: 30px;
+                font-size: 18px;
+            }
         }
     </style>
 </head>
