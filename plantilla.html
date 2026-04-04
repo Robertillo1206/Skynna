@@ -11,13 +11,11 @@
 
         .tv-broadcast-container {
             background-color: #ffffff;
-            /* Fondo oscuro coherente con tu web */
             padding: 40px 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            
         }
 
         .tv-main-title {
@@ -29,10 +27,8 @@
             text-align: center;
         }
 
-        /* Título de temporada más grande como pediste */
         .tv-subtitle {
             color: #000000;
-            /* Tu rojo Skynna */
             font-weight: 900;
             font-size: 1.8rem;
             letter-spacing: 2px;
@@ -42,7 +38,6 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        /* EL CAMPO TÁCTICO */
         .tactical-grid {
             width: 100%;
             max-width: 1100px;
@@ -52,12 +47,10 @@
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
             display: flex;
             flex-direction: column-reverse;
-            /* Portero abajo, Delanteros arriba */
             overflow: hidden;
             position: relative;
         }
 
-        /* Césped bicolor */
         .tactical-grid::before {
             content: "";
             position: absolute;
@@ -73,7 +66,6 @@
             z-index: 1;
         }
 
-        /* LÍNEAS DE POSICIÓN */
         .position-line {
             width: 100%;
             display: flex;
@@ -98,31 +90,25 @@
             letter-spacing: 2px;
         }
 
-        /* Alturas para escritorio */
-        .line-goalkeeper {
-            height: 20%;
-            border-top: none;
+        .line-goalkeeper { height: 20%; border-top: none; }
+        .line-defense { height: 35%; }
+        .line-midfield { height: 25%; }
+        .line-attack { height: 20%; }
+
+        /* Estilo para los enlaces de jugador */
+        .player-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
-        .line-defense {
-            height: 35%;
-        }
-
-        .line-midfield {
-            height: 25%;
-        }
-
-        .line-attack {
-            height: 20%;
-        }
-
-        /* Ajuste de tus Player Cards originales para el campo */
         .tactical-grid .player-card {
             width: 160px;
             height: 220px;
             margin: 10px;
             border: 2px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .tactical-grid .player-card:hover {
@@ -131,65 +117,25 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* --- MEDIA QUERIES PARA MÓVIL --- */
         @media (max-width: 768px) {
-            .tv-main-title {
-                font-size: 1.6rem;
-            }
-
-            .tv-subtitle {
-                font-size: 1.2rem;
-                margin-bottom: 30px;
-            }
-
-            .tactical-grid {
-                height: auto;
-                min-height: 800px;
-                border-width: 3px;
-            }
-
-            .position-line {
-                padding: 45px 5px 15px 5px;
-                height: auto !important;
-            }
-
-            .position-line::after {
-                left: 50%;
-                transform: translateX(-50%);
-                background: rgba(0, 0, 0, 0.4);
-                padding: 2px 12px;
-                border-radius: 10px;
-                color: #fff;
-            }
-
-            /* Tarjetas pequeñas en móvil para que quepan */
-            .tactical-grid .player-card {
-                width: 100px;
-                height: 140px;
-                margin: 5px;
-            }
-
-            .tactical-grid .player-info-overlay h3 {
-                font-size: 0.75rem;
-            }
-
-            .tactical-grid .player-info-overlay p {
-                font-size: 0.65rem;
-            }
+            .tv-main-title { font-size: 1.6rem; }
+            .tv-subtitle { font-size: 1.2rem; margin-bottom: 30px; }
+            .tactical-grid { height: auto; min-height: 800px; border-width: 3px; }
+            .position-line { padding: 45px 5px 15px 5px; height: auto !important; }
+            .position-line::after { left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.4); padding: 2px 12px; border-radius: 10px; color: #fff; }
+            .tactical-grid .player-card { width: 100px; height: 140px; margin: 5px; }
+            .tactical-grid .player-info-overlay h3 { font-size: 0.75rem; }
+            .tactical-grid .player-info-overlay p { font-size: 0.65rem; }
         }
 
         @media (max-width: 400px) {
-            .tactical-grid .player-card {
-                width: 85px;
-                height: 120px;
-            }
+            .tactical-grid .player-card { width: 85px; height: 120px; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- CABECERA ORIGINAL -->
     <header>
         <div class="header-content">
             <a href="index.html">
@@ -199,140 +145,124 @@
         </div>
     </header>
 
-    <!-- MENÚ ORIGINAL -->
     <nav>
         <ul>
             <li><a href="index.html">INICIO</a></li>
             <li><a href="calendario.html">CALENDARIO</a></li>
             <li><a href="plantilla.html" class="active">PLANTILLA</a></li>
-            <li><a href="index.html#galeria">GALERÍA</a></li>
+            <li><a href="tercer tiempo.html">TERCER TIEMPO</a></li>
         </ul>
     </nav>
 
     <main class="tv-broadcast-container">
-        <h1 class="tv-main-title">CONVOCATORIA OFICIAL</h1>
         <p class="tv-subtitle">PLANTILLA | Temporada 2025-2026</p>
         <div class="tactical-grid">
 
             <!-- PORTEROS -->
             <div class="position-line line-goalkeeper" data-position="Portero">
-                <div class="player-card">
-                    <img src="Guille.jpeg" alt="Foto de Guille" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Guille</h3>
-                        <p>Portero | 13</p>
+                <a href="guille.html" class="player-link">
+                    <div class="player-card">
+                        <img src="Guille.jpeg" alt="Foto de Guille" class="player-photo-bg">
+                        <div class="player-info-overlay">
+                            <h3>Guille</h3>
+                            <p>Portero | 13</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- DEFENSAS -->
             <div class="position-line line-defense" data-position="Defensa">
-                <div class="player-card"><img src="erik.jpeg" alt="Erik" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Erik</h3>
-                        <p>Defensa | 2</p>
+                <a href="perfil.html?id=erik" class="player-link">
+                    <div class="player-card"><img src="erik.jpeg" alt="Erik" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Erik</h3><p>Defensa | 2</p></div>
                     </div>
-                </div>
-                <div class="player-card"><img src="deivo.jpeg" alt="David" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>David</h3>
-                        <p>Defensa | 5</p>
+                </a>
+                <a href="david.html" class="player-link">
+                    <div class="player-card"><img src="deivo.jpeg" alt="David" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>David</h3><p>Defensa | 5</p></div>
                     </div>
-                </div>
-                <div class="player-card"><img src="fer.jpeg" alt="Fernando" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Fernando</h3>
-                        <p>Defensa | 9</p>
+                </a>
+                <a href="perfil.html?id=fer" class="player-link">
+                    <div class="player-card"><img src="fer.jpeg" alt="Fernando" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Fernando</h3><p>Defensa | 9</p></div>
                     </div>
-                </div>
-                <div class="player-card"><img src="Pedmad.jpeg" alt="Pedmad" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Pedmad</h3>
-                        <p>Defensa | 14</p>
+                </a>
+                <a href="perfil.html?id=pedmad" class="player-link">
+                    <div class="player-card"><img src="Pedmad.jpeg" alt="Pedmad" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Pedmad</h3><p>Defensa | 14</p></div>
                     </div>
-                </div>
-                <div class="player-card"><img src="rafa.jpeg" alt="Rafael" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Rafael</h3>
-                        <p>Defensa | 21</p>
+                </a>
+                <a href="perfil.html?id=rafa" class="player-link">
+                    <div class="player-card"><img src="rafa.jpeg" alt="Rafael" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Rafael</h3><p>Defensa | 21</p></div>
                     </div>
-                </div>
-                <div class="player-card"><img src="alex.jpg" alt="Alex" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Alex</h3>
-                        <p>Defensa | 23</p>
+                </a>
+                <a href="perfil.html?id=alex" class="player-link">
+                    <div class="player-card"><img src="alex.jpg" alt="Alex" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Alex</h3><p>Defensa | 23</p></div>
                     </div>
-                </div>
-                <div class="player-card"><img src="roberto.jpeg" alt="Roberto" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Roberto</h3>
-                        <p>Defensa | 32</p>
+                </a>
+                <a href="rober.html" class="player-link">
+                    <div class="player-card"><img src="roberto.jpeg" alt="Roberto" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Roberto</h3><p>Defensa | 32</p></div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- MEDIOS -->
             <div class="position-line line-midfield" data-position="Mediocampo">
-
-                <div class="player-card"><img src="Mateo.jpeg" alt="Mateo" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Mateo</h3>
-                        <p>Medio | 4</p>
+                <a href="perfil.html?id=mateo" class="player-link">
+                    <div class="player-card"><img src="Mateo.jpeg" alt="Mateo" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Mateo</h3><p>Medio | 4</p></div>
                     </div>
-                </div>
-                <div class="player-card"><img src="Jorge.jpeg" alt="Jorge" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Jorge</h3>
-                        <p>Medio | 7</p>
+                </a>
+                <a href="perfil.html?id=jorge" class="player-link">
+                    <div class="player-card"><img src="Jorge.jpeg" alt="Jorge" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Jorge</h3><p>Medio | 7</p></div>
                     </div>
-                </div>
-                <div class="player-card"><img src="velasco.jpeg" alt="Velasco" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Velasco</h3>
-                        <p>Medio | 10</p>
+                </a>
+                <a href="velasco.html" class="player-link">
+                    <div class="player-card"><img src="velasco.jpeg" alt="Velasco" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Velasco</h3><p>Medio | 10</p></div>
                     </div>
-                </div>
-                <div class="player-card"><img src="Javato.jpeg" alt="Javato" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Javato</h3>
-                        <p>Medio | 16</p>
+                </a>
+                <a href="perfil.html?id=javato" class="player-link">
+                    <div class="player-card"><img src="Javato.jpeg" alt="Javato" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Javato</h3><p>Defensa | 16</p></div>
                     </div>
-                </div>
-                <div class="player-card"><img src="Menen.jpeg" alt="Menen" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Menen</h3>
-                        <p>Medio | 95</p>
+                </a>
+                <a href="menen.html" class="player-link">
+                    <div class="player-card"><img src="Menen.jpeg" alt="Menen" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Menen</h3><p>Medio | 95</p></div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- DELANTEROS -->
             <div class="position-line line-attack" data-position="Ataque">
-                <div class="player-card"><img src="Daniel.jpeg" alt="Daniel" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Daniel</h3>
-                        <p>Delantero | 3</p>
+                <a href="perfil.html?id=daniel" class="player-link">
+                    <div class="player-card"><img src="Daniel.jpeg" alt="Daniel" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Daniel</h3><p>Delantero | 3</p></div>
                     </div>
-                </div>
-                <div class="player-card"><img src="Miki.jpeg" alt="Miki" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Miki</h3>
-                        <p>Delantero | 8</p>
+                </a>
+                <a href="perfil.html?id=miki" class="player-link">
+                    <div class="player-card"><img src="Miki.jpeg" alt="Miki" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Miki</h3><p>Delantero | 8</p></div>
                     </div>
-                </div>
-                <div class="player-card"><img src="Nico.jpeg" alt="Nico" class="player-photo-bg">
-                    <div class="player-info-overlay">
-                        <h3>Nico</h3>
-                        <p>Delantero | 11</p>
+                </a>
+                <a href="nico.html" class="player-link">
+                    <div class="player-card"><img src="Nico.jpeg" alt="Nico" class="player-photo-bg">
+                        <div class="player-info-overlay"><h3>Nico</h3><p>Delantero | 11</p></div>
                     </div>
-                </div>
+                </a>
             </div>
 
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 SKYNNA FC | Pasión por el fútbol</p>
+        <p>&copy; 2026 SKYNNA FC | Pasión por el fútbol</p>
     </footer>
 
 </body>
