@@ -2,11 +2,12 @@ const track = document.getElementById('track');
 const btnPrev = document.getElementById('btnPrev');
 const btnNext = document.getElementById('btnNext');
 
-// --- FLECHAS (CÁLCULO DINÁMICO) ---
+// --- LÓGICA DE DESPLAZAMIENTO (FLECHAS) ---
+// Calculamos el ancho dinámicamente para que funcione en PC y Móvil
 function getScrollAmount() {
     const item = track.querySelector('.carrusel-item');
-    const gap = 15; // Gap definido en CSS
-    return item.offsetWidth + gap;
+    const gap = 15; // El espacio definido en tu CSS (gap: 15px)
+    return item ? item.offsetWidth + gap : 300;
 }
 
 btnNext.addEventListener('click', () => {
@@ -17,52 +18,62 @@ btnPrev.addEventListener('click', () => {
     track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
 });
 
-// --- ARRASTRAR (RATÓN Y TÁCTIL) ---
+// --- INTERACCIÓN (RATÓN Y TÁCTIL) ---
 let isDown = false;
 let startX;
 let scrollLeft;
 
-// Eventos de Ratón
-track.addEventListener('mousedown', (e) => {
+// Función común para iniciar el arrastre
+const startDragging = (e) => {
     isDown = true;
-    startX = e.pageX - track.offsetLeft;
+    track.classList.add('active');
+    // Detecta si es evento de ratón o táctil
+    const pageX = e.pageX || e.touches[0].pageX;
+    startX = pageX - track.offsetLeft;
     scrollLeft = track.scrollLeft;
-    track.style.scrollBehavior = 'auto';
-});
+    track.style.scrollBehavior = 'auto'; // Desactiva el smooth para que el dedo mande
+};
 
-track.addEventListener('mouseleave', () => isDown = false);
-track.addEventListener('mouseup', () => {
+// Función común para detener el arrastre
+const stopDragging = () => {
     isDown = false;
-    track.style.scrollBehavior = 'smooth';
-});
+    track.classList.remove('active');
+    track.style.scrollBehavior = 'smooth'; // Reactiva el smooth para las flechas
+};
 
-track.addEventListener('mousemove', (e) => {
+// Función común para mover
+const move = (e) => {
     if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    const walk = (x - startX) * 2; 
+    const pageX = e.pageX || e.touches[0].pageX;
+    const x = pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5; // Velocidad de arrastre
     track.scrollLeft = scrollLeft - walk;
-});
+};
+
+// Eventos de Ratón
+track.addEventListener('mousedown', startDragging);
+track.addEventListener('mouseleave', stopDragging);
+track.addEventListener('mouseup', stopDragging);
+track.addEventListener('mousemove', move);
 
 // Eventos Táctiles (Móvil)
-track.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
-    track.style.scrollBehavior = 'auto';
-});
-
-track.addEventListener('touchmove', (e) => {
-    const x = e.touches[0].pageX - track.offsetLeft;
-    const walk = (x - startX) * 1.5; 
-    track.scrollLeft = scrollLeft - walk;
-});
-
-track.addEventListener('touchend', () => {
-    track.style.scrollBehavior = 'smooth';
-});
+track.addEventListener('touchstart', startDragging, { passive: true });
+track.addEventListener('touchend', stopDragging);
+track.addEventListener('touchmove', move, { passive: true });
 
 // --- VISOR MODAL ---
 function verGrande(src) {
-    document.getElementById('visorModal').style.display = 'flex';
-    document.getElementById('imgGrande').src = src;
+    const modal = document.getElementById('visorModal');
+    const img = document.getElementById('imgGrande');
+    if (modal && img) {
+        modal.style.display = 'flex';
+        img.src = src;
+    }
 }
+
+// Cerrar modal al hacer clic fuera de la imagen (opcional pero recomendado)
+document.getElementById('visorModal').addEventListener('click', function(e) {
+    if (e.target === this || e.target.className === 'close-visor') {
+        this.style.display = 'none';
+    }
+});
