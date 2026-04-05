@@ -2,26 +2,27 @@ const track = document.getElementById('track');
 const btnPrev = document.getElementById('btnPrev');
 const btnNext = document.getElementById('btnNext');
 
-// Función de desplazamiento exacto
-function getScrollAmount() {
+// Mover el carrusel
+function moveCarousel(direction) {
     const item = track.querySelector('.carrusel-item');
-    return item ? item.offsetWidth + 15 : 300;
+    const step = item.offsetWidth + 15; // Ancho + Gap
+    track.scrollBy({ left: direction * step, behavior: 'smooth' });
 }
 
-btnNext.onclick = () => track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-btnPrev.onclick = () => track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+btnNext.addEventListener('click', () => moveCarousel(1));
+btnPrev.addEventListener('click', () => moveCarousel(-1));
 
-// --- SOPORTE MULTI-TOUCH Y RATÓN ---
+// Soporte para arrastrar (Touch y Ratón)
 let isDown = false, startX, scrollLeft;
 
-const start = (e) => {
+const startDragging = (e) => {
     isDown = true;
     startX = (e.pageX || e.touches[0].pageX) - track.offsetLeft;
     scrollLeft = track.scrollLeft;
     track.style.scrollBehavior = 'auto';
 };
 
-const end = () => {
+const stopDragging = () => {
     isDown = false;
     track.style.scrollBehavior = 'smooth';
 };
@@ -33,18 +34,15 @@ const move = (e) => {
     track.scrollLeft = scrollLeft - walk;
 };
 
-// Eventos Ratón
-track.addEventListener('mousedown', start);
-track.addEventListener('mouseleave', end);
-track.addEventListener('mouseup', end);
+track.addEventListener('mousedown', startDragging);
 track.addEventListener('mousemove', move);
+track.addEventListener('mouseup', stopDragging);
+track.addEventListener('mouseleave', stopDragging);
 
-// Eventos Táctiles
-track.addEventListener('touchstart', start, {passive: true});
-track.addEventListener('touchend', end);
+track.addEventListener('touchstart', startDragging, {passive: true});
 track.addEventListener('touchmove', move, {passive: true});
+track.addEventListener('touchend', stopDragging);
 
-// Visor Modal
 function verGrande(src) {
     const modal = document.getElementById('visorModal');
     modal.style.display = 'flex';
