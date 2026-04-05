@@ -106,12 +106,35 @@ body { margin: 0; padding: 0; background-color: #ffffff; font-family: sans-serif
     color: white; font-size: 50px; font-weight: bold; cursor: pointer;
 }
 
-/* --- AJUSTES MÓVIL --- */
+/* --- AJUSTES ESPECÍFICOS MÓVIL --- */
 @media (max-width: 768px) {
-    .perfil-card { flex-direction: column; }
-    .perfil-img-container { max-width: 100%; height: auto; aspect-ratio: 1/1; }
-    .perfil-info h1 { font-size: 2.2rem; }
-    .carrusel-item { flex: 0 0 85%; }
-    .prev-slide { left: 5px; }
-    .next-slide { right: 5px; }
+    .perfil-card { 
+        flex-direction: column; 
+        background: #1e1e1e !important; /* Asegura que el fondo sea oscuro */
+    }
+
+    .perfil-info { 
+        padding: 25px; 
+        text-align: center; /* Opcional: centra el texto en móvil */
+    }
+
+    /* FORZAR COLOR DEL NOMBRE */
+    .perfil-info h1 { 
+        font-size: 2.2rem; 
+        color: #ffffff !important; 
+        display: block !important;
+    }
+
+    /* FORZAR COLOR DEL DORSAL Y POSICIÓN (EL QUE SE VE BLANCO) */
+    .perfil-info .posicion { 
+        color: #cc0000 !important; /* Forzamos el rojo del Skynna */
+        font-weight: 900 !important;
+        margin: 10px 0 !important;
+        display: block !important;
+        font-size: 1.2rem !important;
+    }
+
+    .descripcion-container {
+        color: #ccc !important;
+    }
 }
