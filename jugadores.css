@@ -215,7 +215,7 @@ body {
 
     /* CARRUSEL EN MÓVIL */
     .carrusel-item { 
-        flex: 0 0 85%; 
+        flex: 0 0 90%; 
     }
 
     .prev-slide { left: 5px; }
