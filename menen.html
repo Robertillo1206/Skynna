@@ -6,216 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil - Menendez | Skynna FC</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* --- AJUSTES BASE --- */
-        body { margin: 0; padding: 0; background-color: #ffffff; font-family: sans-serif; }
-
-        .perfil-main {
-            padding: 40px 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* --- TARJETA DE PERFIL --- */
-        .perfil-card {
-            width: 100%;
-            max-width: 1100px;
-            min-height: 500px; 
-            max-height: 600px; 
-            background: #1e1e1e;
-            border-radius: 20px;
-            display: flex;
-            overflow: hidden;
-            border: 1px solid #333;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        /* --- CONTENEDOR IMAGEN PRINCIPAL (MODIFICADO PARA BRAZALETE) --- */
-        .perfil-img-container { 
-            flex: 1; 
-            max-width: 450px; 
-            background: #000;
-            position: relative; /* Necesario para posicionar el brazalete */
-            overflow: hidden;   /* Para que el brazalete no salga de la esquina redondeada */
-            perspective: 1000px; /* Importante para el efecto 3D del brazalete */
-        }
-        
-        .perfil-img-container img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            display: block; 
-            z-index: 1; /* Imagen en fondo */
-        }
-
-        /* --- ESTILOS DEL BRAZALETE DE CAPITÁN (EFECTO VOLUMEN) --- */
-        .perfil-img-container::before {
-            content: "Capitán"; 
-            position: absolute;
-            top: 25px;      
-            left: -40px;    
-            width: 150px;   
-            height: 38px;   /* Un poco más ancho */
-            background-color: #ff0606; /* Negro casi puro */
-            color: #ffffff;           
-            border: 3px solid #ffffff; /* Borde más grueso y rojo */
-            
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px; /* C un poco más grande */
-            font-weight: bold;
-            font-family: 'Georgia', serif; 
-            
-            /* -- Transformaciones 3D para efecto real -- */
-            /* Rotación diagonal + sutil perspectiva 3D */
-            transform: rotate(-45deg) rotateY(10deg) translateZ(5px); 
-            
-            /* -- Sombras complejas para volumen real -- */
-            /* 1. Sombra principal debajo */
-            /* 2. Sombra más suave difusa */
-            /* 3. Brillo sutil en el borde dorado */
-            box-shadow: 
-                0 6px 8px rgba(0,0,0,0.7),    /* Sombra profunda */
-                0 15px 25px rgba(0,0,0,0.4),   /* Sombra difusa lejana */
-                inset 0 0 10px rgba(212,175,55, 0.2); /* Sutil brillo dorado interior */
-            
-            /* Sombra a la propia letra C para que parezca bordada */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            
-            z-index: 2; /* Por encima de la foto */
-            border-radius: 4px; /* Esquinas ligeramente suavizadas */
-        }
-
-        .perfil-info { 
-            flex: 1.5; 
-            padding: 40px; 
-            color: white; 
-            display: flex; 
-            flex-direction: column;
-            overflow: hidden; 
-        }
-
-        .perfil-info h1 { 
-            font-size: 3.5rem; 
-            margin: 0; 
-            text-transform: uppercase; 
-            letter-spacing: 2px;
-            line-height: 1;
-        }
-
-        .perfil-info .posicion { 
-            color: #cc0000; 
-            font-size: 1.2rem; 
-            font-weight: 900; 
-            margin: 10px 0 20px 0; 
-            text-transform: uppercase; 
-            display: inline-block;
-            align-self: flex-start;
-        }
-
-        .descripcion-container {
-            flex-grow: 1;
-            overflow-y: auto; 
-            padding-right: 10px;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #ccc;
-            text-align: justify;
-        }
-
-        .descripcion-container::-webkit-scrollbar { width: 5px; }
-        .descripcion-container::-webkit-scrollbar-track { background: #1e1e1e; }
-        .descripcion-container::-webkit-scrollbar-thumb { background: #cc0000; border-radius: 10px; }
-
-        /* --- GALERÍA --- */
-        .galeria-title {
-            width: 100%;
-            max-width: 1100px;
-            color: #000;
-            text-transform: uppercase;
-            border-left: 5px solid #cc0000;
-            padding-left: 15px;
-            margin-bottom: 20px;
-            font-weight: 900;
-        }
-
-        .carrusel-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 1100px;
-            margin-bottom: 50px;
-            overflow: hidden; /* Ocultamos el scroll físico para usar el lógico */
-            cursor: grab;
-        }
-
-        .carrusel-track {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scrollbar-width: none; /* Firefox */
-            padding: 10px 0;
-        }
-        
-        .carrusel-track::-webkit-scrollbar { display: none; } /* Chrome/Safari */
-
-        .carrusel-item {
-            min-width: calc(33.33% - 10px);
-            height: 300px;
-            flex-shrink: 0;
-            user-select: none;
-        }
-
-        .carrusel-item img {
-            width: 100%; height: 100%; object-fit: cover;
-            border-radius: 10px; cursor: pointer; transition: 0.3s;
-            border: 2px solid #eee;
-            pointer-events: auto;
-        }
-        .carrusel-item img:hover { border-color: #cc0000; transform: scale(1.02); }
-
-        .nav-carrusel {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(204, 0, 0, 0.8); color: white; border: none;
-            width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 10;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-        .prev-slide { left: 10px; }
-        .next-slide { right: 10px; }
-
-        /* --- VISOR MODAL --- */
-        #visorModal {
-            display: none; position: fixed; z-index: 10000;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); justify-content: center; align-items: center;
-        }
-        #imgGrande { max-width: 90%; max-height: 85%; border: 3px solid #cc0000; }
-        .close-visor { position: absolute; top: 20px; right: 30px; color: white; font-size: 50px; cursor: pointer; }
-
-        @media (max-width: 768px) {
-            .perfil-card { flex-direction: column; max-height: none; min-height: auto; }
-            .perfil-img-container { max-width: 100%; height: 300px; }
-            .perfil-info { padding: 25px; }
-            .perfil-info h1 { font-size: 2.5rem; }
-            .carrusel-item { min-width: 80%; } 
-            .descripcion-container { overflow-y: visible; max-height: none; }
-            .nav-carrusel { width: 35px; height: 35px; font-size: 16px; }
-            
-            /* Ajuste ligero del brazalete en móvil */
-            .perfil-img-container::before {
-                top: 15px;
-                left: -50px;
-                width: 140px;
-                height: 30px;
-                font-size: 18px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="jugadores.css">
 </head>
 
 <body>
@@ -223,19 +14,20 @@
     <header>
         <div class="header-content">
             <a href="index.html">
-                <img src="escudo.png" alt="Logo Skynna FC" class="main-logo">
+                <img src="escudo.png" alt="Logo Skynna CF" class="main-logo">
             </a>
-            <h1>SKYNNA FC</h1>
+            <h1>SKYNNA CF</h1>
         </div>
     </header>
 
     <nav>
         <ul>
-            <li><a href="#index.html">INICIO</a></li>
+            <li><a href="index.html">INICIO</a></li>
             <li><a href="calendario.html">CALENDARIO</a></li>
-            <li><a href="plantilla.html">PLANTILLA</a></li>
+            <li><a href="plantilla.html" class="active">PLANTILLA</a></li>
             <li><a href="tercer tiempo.html">TERCER TIEMPO</a></li>
             <li><a href="estadisticas.html">ESTADÍSTICAS</a></li>
+            
         </ul>
     </nav>
 
@@ -243,21 +35,26 @@
 
         <section class="perfil-card">
             <div class="perfil-img-container">
-                <img src="Menen.jpeg" alt="Velasco">
+                <img src="Menen.jpeg" alt="Menendez - Medio Skynna FC">
             </div>
             <div class="perfil-info">
                 <h1>Menendez</h1>
                 <p class="posicion">Medio | Dorsal 95</p>
-                
+
                 <div class="descripcion-container">
-                    Menendez es el motor creativo del equipo. Con una visión de juego privilegiada y un toque de balón que parece sacado de otra categoría, el "95" del Skynna FC es capaz de decidir un partido en una sola jugada. <br><br>
-                    Su compromiso con el club y su liderazgo dentro del campo lo convierten en una pieza fundamental. Ya sea asistiendo o llegando desde segunda línea, Menendez siempre es una amenaza para el rival. Gracias al diseño de esta tarjeta, puedes añadir toda la biografía que desees sin que el tamaño de la foto o la caja cambien en ordenadores.
+                    Menendez es el motor creativo del equipo. Con una visión de juego privilegiada y un toque de balón
+                    que parece sacado de otra categoría, el "95" del Skynna FC es capaz de decidir un partido en una
+                    sola jugada. <br><br>
+                    Su compromiso con el club y su liderazgo dentro del campo lo convierten en una pieza fundamental. Ya
+                    sea asistiendo o llegando desde segunda línea, Menendez siempre es una amenaza para el rival.
+                    Gracias al diseño de esta tarjeta, puedes añadir toda la biografía que desees sin que el tamaño de
+                    la foto o la caja cambien en ordenadores.
                 </div>
             </div>
         </section>
 
         <h2 class="galeria-title">Galería</h2>
-        
+
         <div class="carrusel-wrapper">
             <button class="nav-carrusel prev-slide" id="btnPrev">&#10094;</button>
             <div class="carrusel-track" id="track">
@@ -282,60 +79,10 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 SKYNNA FC | Perfil de Jugador</p>
+        <p>&copy; 2026 SKYNNA CF | Perfil de Jugador</p>
     </footer>
 
-    <script>
-        const track = document.getElementById('track');
-        const btnPrev = document.getElementById('btnPrev');
-        const btnNext = document.getElementById('btnNext');
-
-        // --- FLECHAS (CORREGIDAS) ---
-        btnNext.addEventListener('click', () => {
-            const itemWidth = track.querySelector('.carrusel-item').offsetWidth + 15;
-            track.scrollBy({ left: itemWidth, behavior: 'smooth' });
-        });
-
-        btnPrev.addEventListener('click', () => {
-            const itemWidth = track.querySelector('.carrusel-item').offsetWidth + 15;
-            track.scrollBy({ left: -itemWidth, behavior: 'smooth' });
-        });
-
-        // --- ARRASTRAR CON RATÓN ---
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        track.addEventListener('mousedown', (e) => {
-            isDown = true;
-            track.classList.add('active');
-            startX = e.pageX - track.offsetLeft;
-            scrollLeft = track.scrollLeft;
-            track.style.scrollBehavior = 'auto'; // Desactiva smooth para que el arrastre sea instantáneo
-        });
-
-        track.addEventListener('mouseleave', () => {
-            isDown = false;
-        });
-
-        track.addEventListener('mouseup', () => {
-            isDown = false;
-            track.style.scrollBehavior = 'smooth'; // Reactiva smooth para las flechas
-        });
-
-        track.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - track.offsetLeft;
-            const walk = (x - startX) * 2; 
-            track.scrollLeft = scrollLeft - walk;
-        });
-
-        // --- VISOR MODAL ---
-        function verGrande(src) {
-            document.getElementById('visorModal').style.display = 'flex';
-            document.getElementById('imgGrande').src = src;
-        }
-    </script>
+    <script src="jugadores.js"></script>
 </body>
+
 </html>
