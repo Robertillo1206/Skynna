@@ -1,10 +1,4 @@
-/* --- ESTILOS GENERALES --- */
-body { 
-    margin: 0; 
-    padding: 0; 
-    background-color: #ffffff; 
-    font-family: sans-serif; 
-}
+body { margin: 0; padding: 0; background-color: #ffffff; font-family: sans-serif; }
 
 .perfil-main {
     padding: 40px 15px;
@@ -14,7 +8,6 @@ body {
     min-height: 100vh;
 }
 
-/* --- TARJETA DE PERFIL --- */
 .perfil-card {
     width: 100%;
     max-width: 1100px;
@@ -22,153 +15,61 @@ body {
     border-radius: 20px;
     display: flex;
     overflow: hidden;
-    border: 1px solid #333;
     margin-bottom: 40px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-.perfil-img-container { 
-    flex: 1; 
-    max-width: 450px; 
-    background: #000;
-}
+.perfil-img-container { flex: 1; max-width: 450px; background: #000; }
+.perfil-img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.perfil-img-container img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    display: block; 
-}
+.perfil-info { flex: 1.5; padding: 40px; color: white; display: flex; flex-direction: column; }
+.perfil-info h1 { font-size: 3.5rem; text-transform: uppercase; margin: 0; }
+.perfil-info .posicion { color: #cc0000; font-weight: 900; margin: 10px 0; }
 
-.perfil-info { 
-    flex: 1.5; 
-    padding: 40px; 
-    color: white; 
-    display: flex; 
-    flex-direction: column;
-}
-
-.perfil-info h1 { 
-    font-size: 3.5rem; 
-    margin: 0; 
-    text-transform: uppercase; 
-    line-height: 1;
-}
-
-.perfil-info .posicion { 
-    color: #cc0000; 
-    font-size: 1.2rem; 
-    font-weight: 900; 
-    margin: 10px 0 20px 0; 
-}
-
-.descripcion-container {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #ccc;
-    text-align: justify;
-}
-
-/* --- GALERÍA / CARRUSEL --- */
-.galeria-title {
-    width: 100%;
-    max-width: 1100px;
-    border-left: 5px solid #cc0000;
-    padding-left: 15px;
-    margin-bottom: 20px;
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-.carrusel-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 1100px;
-    margin-bottom: 50px;
-}
-
+/* Galería */
+.carrusel-wrapper { position: relative; width: 100%; max-width: 1100px; }
 .carrusel-track {
     display: flex;
     gap: 15px;
     overflow-x: auto;
     scroll-behavior: smooth;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
     padding: 10px 0;
 }
-
-.carrusel-track::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+.carrusel-track::-webkit-scrollbar { display: none; }
 
 .carrusel-item {
     min-width: calc(33.33% - 10px);
     height: 300px;
     flex-shrink: 0;
 }
-
-.carrusel-item img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover;
-    border-radius: 10px; 
-    cursor: pointer;
-    border: 2px solid #eee;
-}
+.carrusel-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; cursor: pointer; }
 
 .nav-carrusel {
-    position: absolute; 
-    top: 50%; 
-    transform: translateY(-50%);
-    background: rgba(204, 0, 0, 0.8); 
-    color: white; 
-    border: none;
-    width: 45px; 
-    height: 45px; 
-    border-radius: 50%; 
-    cursor: pointer; 
-    z-index: 10;
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(204, 0, 0, 0.8); color: white; border: none;
+    width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 10;
 }
-
 .prev-slide { left: 10px; }
 .next-slide { right: 10px; }
 
-/* --- VISOR MODAL --- */
+/* Modal */
 #visorModal {
-    display: none; 
-    position: fixed; 
-    z-index: 10000;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9); 
-    justify-content: center; 
-    align-items: center;
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center;
 }
-#imgGrande { max-width: 90%; max-height: 85%; border: 3px solid #cc0000; }
+#imgGrande { max-width: 90%; max-height: 80%; border: 2px solid #cc0000; }
 
-/* --- DISEÑO PARA MÓVILES (RESPONSIVE) --- */
+/* RESPONSIVE MÓVIL */
 @media (max-width: 768px) {
-    .perfil-card {
-        flex-direction: column;
-    }
-
-    .perfil-img-container {
-        max-width: 100%;
-        height: 300px;
-    }
-
-    .perfil-info { padding: 20px; }
+    .perfil-card { flex-direction: column; }
+    .perfil-img-container { max-width: 100%; height: 300px; }
     .perfil-info h1 { font-size: 2.2rem; }
-
-    /* Carrusel en móvil: Imágenes proporcionales, no gigantes */
+    
     .carrusel-item {
-        min-width: 80%; 
-        height: auto; 
-        aspect-ratio: 16 / 9; /* Esto evita que se vean enormes o deformadas */
+        min-width: 80%; /* Evita que la foto sea gigante */
+        height: auto;
+        aspect-ratio: 16 / 9; /* Mantiene proporción de foto */
     }
-
-    .nav-carrusel {
-        width: 35px;
-        height: 35px;
-        background: rgba(204, 0, 0, 0.9);
-    }
+    .nav-carrusel { width: 35px; height: 35px; }
 }
