@@ -57,7 +57,6 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     line-height: 1.1;
-    word-wrap: break-word;
 }
 
 .perfil-info .posicion {
@@ -80,12 +79,7 @@ body {
     text-align: justify;
 }
 
-/* Scrollbar personalizado */
-.descripcion-container::-webkit-scrollbar { width: 5px; }
-.descripcion-container::-webkit-scrollbar-track { background: #1e1e1e; }
-.descripcion-container::-webkit-scrollbar-thumb { background: #cc0000; border-radius: 10px; }
-
-/* --- GALERÍA --- */
+/* --- GALERÍA INTELIGENTE --- */
 .galeria-title {
     width: 100%;
     max-width: 1100px;
@@ -102,35 +96,44 @@ body {
     width: 100%;
     max-width: 1100px;
     margin-bottom: 50px;
-    overflow: hidden;
 }
 
 .carrusel-track {
     display: flex;
     gap: 15px;
     overflow-x: auto;
+    padding: 10px 5px;
     scroll-behavior: smooth;
-    scrollbar-width: none;
-    padding: 10px 0;
+    /* Si hay pocas fotos, las alinea al principio sin estirarlas */
+    justify-content: flex-start; 
 }
 
+/* Ocultar scrollbar */
 .carrusel-track::-webkit-scrollbar { display: none; }
+.carrusel-track { -ms-overflow-style: none; scrollbar-width: none; }
 
 .carrusel-item {
-    min-width: calc(33.33% - 10px);
-    height: 300px;
-    flex-shrink: 0;
+    width: 150px; /* Tamaño fijo de miniatura */
+    height: 150px;
+    flex-shrink: 0; /* Impide que se encojan si hay pocas */
 }
 
 .carrusel-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
+    cursor: pointer;
     transition: 0.3s;
-    border: 2px solid #eee;
+    border: 1px solid #ddd;
 }
 
+.carrusel-item img:hover {
+    border-color: #cc0000;
+    transform: scale(1.05);
+}
+
+/* Flechas: Solo se deberían usar si hay scroll, pero las dejamos fijas por ahora */
 .nav-carrusel {
     position: absolute;
     top: 50%;
@@ -138,18 +141,18 @@ body {
     background: rgba(204, 0, 0, 0.8);
     color: white;
     border: none;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     z-index: 10;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
 }
 
-.prev-slide { left: 10px; }
-.next-slide { right: 10px; }
+.prev-slide { left: -15px; }
+.next-slide { right: -15px; }
 
 /* --- VISOR MODAL --- */
 #visorModal {
@@ -157,34 +160,19 @@ body {
     position: fixed;
     z-index: 10000;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     justify-content: center;
     align-items: center;
 }
 
-#imgGrande { max-width: 90%; max-height: 85%; border: 3px solid #cc0000; }
+#imgGrande { max-width: 90%; max-height: 85%; border: 2px solid #cc0000; }
 .close-visor { position: absolute; top: 20px; right: 30px; color: white; font-size: 50px; cursor: pointer; }
 
-/* --- AJUSTES PARA MÓVILES --- */
+/* --- MÓVIL --- */
 @media (max-width: 768px) {
-    .perfil-card {
-        flex-direction: column; /* Tarjeta vertical */
-        max-height: none; 
-        min-height: auto;
-    }
-
-    .perfil-img-container {
-        max-width: 100%;
-        height: 350px; /* Foto arriba */
-    }
-
-    .perfil-info { padding: 20px; }
-    .perfil-info h1 { font-size: 2.2rem; } /* Evita corte de nombre */
-
-    .carrusel-item {
-        min-width: 85%; /* Imagen legible en móvil */
-        height: 250px;
-    }
-
-    .nav-carrusel { display: none; } /* Navegación táctil */
+    .perfil-card { flex-direction: column; max-height: none; min-height: auto; }
+    .perfil-img-container { max-width: 100%; height: 300px; }
+    .perfil-info h1 { font-size: 2.5rem; }
+    .carrusel-item { width: 110px; height: 110px; }
+    .nav-carrusel { display: none; }
 }
