@@ -100,9 +100,10 @@ body {
     display: none; 
 }
 
+/* CAMBIO AQUÍ: flex al 48% para que se vean 2 fotos más grandes en PC */
 .carrusel-item { 
-    flex: 0 0 calc(33.333% - 10px); 
-    aspect-ratio: 16 / 9; 
+    flex: 0 0 calc(48% - 10px); 
+    aspect-ratio: 4 / 3; /* Un poco más alta para que luzca más */
 }
 
 .carrusel-item img {
@@ -213,9 +214,10 @@ body {
         display: block !important;
     }
 
-    /* CARRUSEL EN MÓVIL */
+    /* CAMBIO AQUÍ: flex al 92% para que la foto sea casi pantalla completa en móvil */
     .carrusel-item { 
-        flex: 0 0 90%; 
+        flex: 0 0 92%; 
+        aspect-ratio: 4 / 3;
     }
 
     .prev-slide { left: 5px; }
