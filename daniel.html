@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,75 +7,46 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="jugadores.css">
 </head>
-
 <body>
-
     <header>
         <div class="header-content">
-            <a href="index.html">
-                <img src="escudo.png" alt="Logo Skynna CF" class="main-logo">
-            </a>
+            <a href="index.html"><img src="escudo.png" alt="Logo Skynna CF" class="main-logo"></a>
             <h1>SKYNNA CF</h1>
         </div>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">INICIO</a></li>
-            <li><a href="calendario.html">CALENDARIO</a></li>
-            <li><a href="plantilla.html" class="active">PLANTILLA</a></li>
-            <li><a href="tercer tiempo.html">TERCER TIEMPO</a></li>
-            <li><a href="estadisticas.html">ESTADÍSTICAS</a></li>
-        </ul>
-    </nav>
-
     <main class="perfil-main">
-
         <section class="perfil-card">
             <div class="perfil-img-container">
-                <img src="Daniel.jpeg" alt="Daniel - Medio Skynna FC">
+                <img src="Daniel.jpeg" alt="Daniel">
             </div>
             <div class="perfil-info">
                 <h1>Daniel</h1>
                 <p class="posicion">Delantero | Dorsal 3</p>
-
                 <div class="descripcion-container">
-                    Daniel es el motor creativo del equipo. Con una visión de juego privilegiada y un toque de balón
-                    que parece sacado de otra categoría, el "3" del Skynna FC es capaz de decidir un partido en una
-                    sola jugada. <br><br>
-                    Su compromiso con el club y su liderazgo dentro del campo lo convierten en una pieza fundamental. Ya
-                    sea asistiendo o llegando desde segunda línea, Daniel siempre es una amenaza para el rival.
-                    Gracias al diseño de esta tarjeta, puedes añadir toda la biografía que desees sin que el tamaño de
-                    la foto o la caja cambien en ordenadores.
+                    Daniel es el motor creativo del equipo...
                 </div>
             </div>
         </section>
 
         <h2 class="galeria-title">Galería</h2>
 
-       <div class="carrusel-wrapper">
-    <button class="nav-carrusel prev-slide" id="btnPrev">&#10094;</button>
-    
-    <div class="carrusel-track" id="track">
-        <div class="carrusel-item"><img src="daniel1.jpeg" onclick="verGrande(this.src)"></div>
-        <div class="carrusel-item"><img src="daniel2.jpeg" onclick="verGrande(this.src)"></div>
-        <div class="carrusel-item"><img src="daniel3.jpeg" onclick="verGrande(this.src)"></div>
-    </div> 
-
-    <button class="nav-carrusel next-slide" id="btnNext">&#10095;</button>
-</div>
+        <div class="carrusel-wrapper">
+            <button class="nav-carrusel prev-slide" id="btnPrev">&#10094;</button>
+            <div class="carrusel-track" id="track">
+                <div class="carrusel-item"><img src="daniel1.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="daniel2.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="daniel3.jpeg" onclick="verGrande(this.src)"></div>
+            </div>
+            <button class="nav-carrusel next-slide" id="btnNext">&#10095;</button>
+        </div>
     </main>
 
-    <div id="visorModal" onclick="this.style.display='none'">
-        <span class="close-visor">&times;</span>
+    <div id="visorModal">
+        <span class="close-visor" onclick="cerrarModal()">&times;</span>
         <img id="imgGrande" src="">
     </div>
 
-    <footer>
-        <p>&copy; 2026 SKYNNA CF | Perfil de Jugador</p>
-    </footer>
-
     <script src="jugadores.js"></script>
 </body>
-
 </html>
