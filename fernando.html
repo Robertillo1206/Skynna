@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Fernando | Skynna CF</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="jugadores.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html">
+                <img src="escudo.png" alt="Logo Skynna FC" class="main-logo">
+            </a>
+            <h1>SKYNNA CF</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="calendario.html">CALENDARIO</a></li>
+            <li><a href="plantilla.html" class="active">PLANTILLA</a></li>
+            <li><a href="tercer tiempo.html">TERCER TIEMPO</a></li>
+            <li><a href="estadisticas.html">ESTADÍSTICAS</a></li>
+        </ul>
+    </nav>
+
+    <main class="perfil-main">
+
+        <section class="perfil-card">
+            <div class="perfil-img-container">
+                <img src="fer.jpeg" alt="Fernando - Defensa Skynna FC">
+            </div>
+            <div class="perfil-info">
+                <h1>Fernando</h1>
+                <p class="posicion">Defensa | Dorsal 9</p>
+
+                <div class="descripcion-container">
+                    El numero “9” del equipo y cualquiera pensaría que es el delantero killer, pero la realidad es que
+                    lo único que tiene de killer es para las rodillas de los rivales (y para las suyas) un jugador que
+                    se hace sangre y el mismo no sabe ni cómo.
+                    <br><br>
+                    Le gusta el contacto con los delanteros, el poder poner su polla el culo del rival y que nadie
+                    sospeche nada, el ir al suelo cuando hay algún desajuste defensivo y auto motivarse después
+                    cualquier buena acción.
+                    <br><br>
+                    Y parece que es el jugador perfecto, sólido en defensa y simple y correcto con el balón, pero hay un
+                    problema y es en donde está el SKYNNA CF en el corazón de nuestro compañero y es que por mucho amor
+                    que intenta demostrar e intenta decir que tiene hacia este club, se nota que está y siempre estará
+                    por delante Asturias, ESIC y el Brawl Stars.
+                </div>
+            </div>
+        </section>
+
+        <h2 class="galeria-title">Galería</h2>
+
+        <div class="carrusel-wrapper">
+            <button class="nav-carrusel prev-slide" id="btnPrev">&#10094;</button>
+            <div class="carrusel-track" id="track">
+                <div class="carrusel-item"><img src="fer1.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="fer2.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="fer3.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="fer4.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="fer5.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="fer6.jpeg" onclick="verGrande(this.src)"></div>
+
+            </div>
+            <button class="nav-carrusel next-slide" id="btnNext">&#10095;</button>
+        </div>
+    </main>
+
+    <div id="visorModal" onclick="this.style.display='none'">
+        <span class="close-visor">&times;</span>
+        <img id="imgGrande" src="">
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SKYNNA CF | Perfil de Jugador</p>
+    </footer>
+
+    <script src="jugadores.js"></script>
+</body>
+
+</html>
