@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Miki | Skynna CF</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="jugadores.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html">
+                <img src="escudo.png" alt="Logo Skynna FC" class="main-logo">
+            </a>
+            <h1>SKYNNA CF</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="calendario.html">CALENDARIO</a></li>
+            <li><a href="plantilla.html" class="active">PLANTILLA</a></li>
+            <li><a href="tercer tiempo.html">TERCER TIEMPO</a></li>
+            <li><a href="estadisticas.html">ESTADÍSTICAS</a></li>
+        </ul>
+    </nav>
+
+    <main class="perfil-main">
+
+        <section class="perfil-card">
+            <div class="perfil-img-container">
+                <img src="Nico.jpeg" alt="Nico - Delantero Skynna FC">
+            </div>
+            <div class="perfil-info">
+                <h1>Miki</h1>
+                <p class="posicion">Delantero | Dorsal 8</p>
+
+                <div class="descripcion-container">
+                    Que honor tener en el club jugadores de esta categoría, el fútbol se queda corto para este
+                    futbolista, es esa clase de “9”que no mete gol para que el portero no se ponga triste, nuestro
+                    suplente indiscutible, rey del fairplay para que los partidos siempre estén un poco más ajustados.
+                    En cuanto a las habilidades de este crack cabe destacar la facilidad motriz para liar cigarros y
+                    desenvolver el papel del BigMac, tiene una increíble velocidad punta comparable a mi abuela en silla
+                    de ruedas ,un líder fuera y fuera del campo, la garra que tiene nuestro 8 para salir del terreno de
+                    juego de vuelta al banquillo es aterradora.
+                </div>
+            </div>
+        </section>
+
+        <h2 class="galeria-title">Galería</h2>
+
+        <div class="carrusel-wrapper">
+            <button class="nav-carrusel prev-slide" id="btnPrev">&#10094;</button>
+            <div class="carrusel-track" id="track">
+                <div class="carrusel-item"><img src="miki1.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="miki2.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="miki3.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="miki4.jpeg" onclick="verGrande(this.src)"></div>
+            </div>
+            <button class="nav-carrusel next-slide" id="btnNext">&#10095;</button>
+        </div>
+    </main>
+
+    <div id="visorModal" onclick="this.style.display='none'">
+        <span class="close-visor">&times;</span>
+        <img id="imgGrande" src="">
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SKYNNA CF | Perfil de Jugador</p>
+    </footer>
+
+    <script src="jugadores.js"></script>
+</body>
+
+</html>
