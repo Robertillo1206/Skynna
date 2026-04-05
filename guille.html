@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Guillermo | Skynna CF</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="jugadores.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html">
+                <img src="escudo.png" alt="Logo Skynna FC" class="main-logo">
+            </a>
+            <h1>SKYNNA CF</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="calendario.html">CALENDARIO</a></li>
+            <li><a href="plantilla.html" class="active">PLANTILLA</a></li>
+            <li><a href="tercer tiempo.html">TERCER TIEMPO</a></li>
+            <li><a href="estadisticas.html">ESTADÍSTICAS</a></li>
+        </ul>
+    </nav>
+
+    <main class="perfil-main">
+
+        <section class="perfil-card">
+            <div class="perfil-img-container">
+                <img src="Guille.jpeg" alt="Guillermo - Portero Skynna FC">
+            </div>
+            <div class="perfil-info">
+                <h1>Guillermo</h1>
+                <p class="posicion">Portero | Dorsal 13</p>
+
+                <div class="descripcion-container">
+                    Qué privilegio tener a Guille, nuestro eterno 13, un portero irrepetible capaz de transformar un
+                    simple córner a favor en una escena de máxima tensión. Bajo palos es puro sentimiento: cuando grita
+                    que la pelota es suya, parece más un gesto de cortesía que de autoridad, dejándola pasar como quien
+                    no quiere robar protagonismo al rival.
+                    <br><br>
+                    Sus fallos no son fallos, son puro espectáculo, pequeñas dosis de intriga para mantener el marcador
+                    vivo y el corazón en vilo. Practica un fair play tan elevado que a veces prefiere “colaborar” con el
+                    delantero antes que arruinar la emoción.
+                    <br><br>
+                    Un portero que puede hacer milagros… pero que nunca nos permite relajarnos, porque en cada balón
+                    aéreo nos recuerda que su verdadera especialidad es mantenernos sufriendo hasta el último segundo.
+                </div>
+            </div>
+        </section>
+
+        <h2 class="galeria-title">Galería</h2>
+
+        <div class="carrusel-wrapper">
+            <button class="nav-carrusel prev-slide" id="btnPrev">&#10094;</button>
+            <div class="carrusel-track" id="track">
+                <div class="carrusel-item"><img src="Guille1.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="Guille2.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="Guille3.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="Guille4.jpeg" onclick="verGrande(this.src)"></div>
+                <div class="carrusel-item"><img src="Guille5.jpeg" onclick="verGrande(this.src)"></div>
+            </div>
+            <button class="nav-carrusel next-slide" id="btnNext">&#10095;</button>
+        </div>
+    </main>
+
+    <div id="visorModal" onclick="this.style.display='none'">
+        <span class="close-visor">&times;</span>
+        <img id="imgGrande" src="">
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SKYNNA CF | Perfil de Jugador</p>
+    </footer>
+
+    <script src="jugadores.js"></script>
+</body>
+
+</html>
