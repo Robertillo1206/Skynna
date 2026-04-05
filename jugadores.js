@@ -2,27 +2,26 @@ const track = document.getElementById('track');
 const btnPrev = document.getElementById('btnPrev');
 const btnNext = document.getElementById('btnNext');
 
-// Mover el carrusel
-function moveCarousel(direction) {
+// Cálculo dinámico según el tamaño de la pantalla en ese momento
+const getStep = () => {
     const item = track.querySelector('.carrusel-item');
-    const step = item.offsetWidth + 15; // Ancho + Gap
-    track.scrollBy({ left: direction * step, behavior: 'smooth' });
-}
+    return item.offsetWidth + 15; 
+};
 
-btnNext.addEventListener('click', () => moveCarousel(1));
-btnPrev.addEventListener('click', () => moveCarousel(-1));
+btnNext.onclick = () => track.scrollBy({ left: getStep(), behavior: 'smooth' });
+btnPrev.onclick = () => track.scrollBy({ left: -getStep(), behavior: 'smooth' });
 
-// Soporte para arrastrar (Touch y Ratón)
+// SOPORTE TÁCTIL Y RATÓN
 let isDown = false, startX, scrollLeft;
 
-const startDragging = (e) => {
+const start = (e) => {
     isDown = true;
     startX = (e.pageX || e.touches[0].pageX) - track.offsetLeft;
     scrollLeft = track.scrollLeft;
     track.style.scrollBehavior = 'auto';
 };
 
-const stopDragging = () => {
+const end = () => {
     isDown = false;
     track.style.scrollBehavior = 'smooth';
 };
@@ -34,14 +33,14 @@ const move = (e) => {
     track.scrollLeft = scrollLeft - walk;
 };
 
-track.addEventListener('mousedown', startDragging);
+track.addEventListener('mousedown', start);
 track.addEventListener('mousemove', move);
-track.addEventListener('mouseup', stopDragging);
-track.addEventListener('mouseleave', stopDragging);
+track.addEventListener('mouseup', end);
+track.addEventListener('mouseleave', end);
 
-track.addEventListener('touchstart', startDragging, {passive: true});
+track.addEventListener('touchstart', start, {passive: true});
 track.addEventListener('touchmove', move, {passive: true});
-track.addEventListener('touchend', stopDragging);
+track.addEventListener('touchend', end);
 
 function verGrande(src) {
     const modal = document.getElementById('visorModal');
