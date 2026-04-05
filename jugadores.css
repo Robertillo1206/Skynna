@@ -141,27 +141,45 @@ body { margin: 0; padding: 0; background-color: #ffffff; font-family: sans-serif
 #imgGrande { max-width: 90%; max-height: 85%; border: 3px solid #cc0000; }
 
 /* --- RESPONSIVE MÓVIL --- */
-@media (max-width: 768px) {
-    /* ... (mantén lo de la perfil-card igual) ... */
+Siento la frustración; entiendo que ver las fotos deformadas o gigantes en el móvil es desesperante después de varios intentos. El problema es que estamos forzando una altura fija (height) que no encaja con la proporción de tus fotos reales.
 
+Para que las fotos se vean perfectas (sin estirarse y con un tamaño lógico), vamos a usar aspect-ratio. Esto mantendrá la forma de la foto sin importar el dispositivo.
+
+1. El CSS Definitivo para el Móvil
+Sustituye todo tu bloque @media (max-width: 768px) en jugadores.css por este. He eliminado las alturas fijas para que la imagen mande:
+
+CSS
+@media (max-width: 768px) {
+    .perfil-card {
+        flex-direction: column;
+        max-height: none;
+        min-height: auto;
+    }
+
+    .perfil-img-container {
+        max-width: 100%;
+        height: 300px; /* Foto principal controlada */
+    }
+
+    /* --- ESTO ES LO QUE ARREGLA TUS FOTOS --- */
     .carrusel-item {
-        /* Bajamos el ancho al 70% para que se vean las fotos de los lados */
-        min-width: 70%; 
-        /* Bajamos la altura para que no sea una imagen gigante */
-        height: 200px; 
-        flex-shrink: 0;
+        min-width: 75%; /* Ancho para que se vean las flechas a los lados */
+        height: auto;   /* ¡IMPORTANTE! Quitamos la altura fija */
+        aspect-ratio: 4 / 3; /* Esto mantiene la proporción de cámara estándar */
     }
 
     .carrusel-item img {
-        /* Importante: contain asegura que se vea la foto entera, 
-           cover la recorta para llenar el hueco. Elige la que prefieras. */
-        object-fit: cover; 
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Rellena el espacio sin estirarse como un chicle */
+        border-radius: 8px;
     }
 
     .nav-carrusel {
-        /* Hacemos las flechas un poco más pequeñas para que no tapen tanto */
-        width: 30px;
-        height: 30px;
+        width: 32px;
+        height: 32px;
         font-size: 14px;
+        /* Subimos el z-index para que nada las tape */
+        z-index: 20; 
     }
 }
