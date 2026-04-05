@@ -36,17 +36,24 @@ track.addEventListener('touchmove', (e) => {
     track.scrollLeft = scrollLeft - walk;
 }, {passive: true});
 
-// --- FUNCIÓN VER EN GRANDE ---
+// --- FUNCIÓN VER EN GRANDE (CORREGIDA) ---
 function verGrande(src) {
     const modal = document.getElementById('visorModal');
     const img = document.getElementById('imgGrande');
     if (modal && img) {
         modal.style.display = 'flex';
         img.src = src;
+        // BLOQUEAR SCROLL DE LA PÁGINA (OPCIONAL PERO RECOMENDADO)
+        document.body.style.overflow = 'hidden';
     }
 }
 
 // Cerrar modal al hacer clic en cualquier parte del mismo
-document.getElementById('visorModal').onclick = function() {
-    this.style.display = 'none';
+document.getElementById('visorModal').onclick = function(e) {
+    // Si haces clic en la imagen, no cierres el modal
+    if (e.target !== document.getElementById('imgGrande')) {
+        this.style.display = 'none';
+        // REACTIVAR SCROLL DE LA PÁGINA
+        document.body.style.overflow = 'auto';
+    }
 };
