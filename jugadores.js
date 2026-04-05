@@ -2,53 +2,50 @@ const track = document.getElementById('track');
 const btnPrev = document.getElementById('btnPrev');
 const btnNext = document.getElementById('btnNext');
 
-// --- FLECHAS ---
+// --- NAVEGACIÓN FLECHAS ---
 btnNext.addEventListener('click', () => {
-    const itemWidth = track.querySelector('.carrusel-item').offsetWidth + 15;
-    track.scrollBy({ left: itemWidth, behavior: 'smooth' });
+    track.scrollBy({ left: 200, behavior: 'smooth' });
 });
 
 btnPrev.addEventListener('click', () => {
-    const itemWidth = track.querySelector('.carrusel-item').offsetWidth + 15;
-    track.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+    track.scrollBy({ left: -200, behavior: 'smooth' });
 });
 
-// --- ARRASTRAR (RATÓN Y TÁCTIL) ---
+// --- ARRASTRAR (MOUSE Y TOUCH) ---
 let isDown = false;
 let startX;
 let scrollLeft;
 
-const startDragging = (e) => {
+const getX = (e) => (e.pageX || e.touches[0].pageX);
+
+const start = (e) => {
     isDown = true;
-    startX = (e.pageX || e.touches[0].pageX) - track.offsetLeft;
+    startX = getX(e) - track.offsetLeft;
     scrollLeft = track.scrollLeft;
     track.style.scrollBehavior = 'auto';
 };
 
-const stopDragging = () => {
+const end = () => {
     isDown = false;
     track.style.scrollBehavior = 'smooth';
 };
 
-const moveDragging = (e) => {
+const move = (e) => {
     if (!isDown) return;
-    const x = (e.pageX || e.touches[0].pageX) - track.offsetLeft;
+    const x = getX(e) - track.offsetLeft;
     const walk = (x - startX) * 1.5; 
     track.scrollLeft = scrollLeft - walk;
 };
 
-// Eventos Ratón
-track.addEventListener('mousedown', startDragging);
-track.addEventListener('mouseleave', stopDragging);
-track.addEventListener('mouseup', stopDragging);
-track.addEventListener('mousemove', moveDragging);
+track.addEventListener('mousedown', start);
+track.addEventListener('touchstart', start);
+track.addEventListener('mouseup', end);
+track.addEventListener('touchend', end);
+track.addEventListener('mouseleave', end);
+track.addEventListener('mousemove', move);
+track.addEventListener('touchmove', move);
 
-// Eventos Táctiles
-track.addEventListener('touchstart', startDragging);
-track.addEventListener('touchend', stopDragging);
-track.addEventListener('touchmove', moveDragging);
-
-// --- VISOR MODAL ---
+// --- VISOR ---
 function verGrande(src) {
     document.getElementById('visorModal').style.display = 'flex';
     document.getElementById('imgGrande').src = src;
