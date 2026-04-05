@@ -1,15 +1,16 @@
-/* --- CONFIGURACIÓN BASE --- */
-body { margin: 0; padding: 0; background-color: #ffffff; font-family: sans-serif; }
+/* --- BASE --- */
+body { margin: 0; padding: 0; background-color: #ffffff; font-family: sans-serif; overflow-x: hidden; }
 
 .perfil-main {
     padding: 40px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* --- TARJETA DE PERFIL (PC) --- */
+/* --- TARJETA PRINCIPAL --- */
 .perfil-card {
     width: 100%;
     max-width: 1100px;
@@ -18,22 +19,22 @@ body { margin: 0; padding: 0; background-color: #ffffff; font-family: sans-serif
     display: flex;
     overflow: hidden;
     margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    min-height: 500px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .perfil-img-container { flex: 1; max-width: 450px; background: #000; }
 .perfil-img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 .perfil-info { flex: 1.5; padding: 40px; color: white; display: flex; flex-direction: column; }
-.perfil-info h1 { font-size: 3.5rem; text-transform: uppercase; margin: 0; line-height: 1; }
+.perfil-info h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin: 0; text-transform: uppercase; line-height: 1; }
 .perfil-info .posicion { color: #cc0000; font-weight: 900; margin: 15px 0; font-size: 1.2rem; }
 
-/* --- CARRUSEL RESPONSIVE --- */
+/* --- CARRUSEL DINÁMICO --- */
 .carrusel-wrapper {
     position: relative;
     width: 100%;
     max-width: 1100px;
+    margin: 0 auto;
 }
 
 .carrusel-track {
@@ -42,14 +43,13 @@ body { margin: 0; padding: 0; background-color: #ffffff; font-family: sans-serif
     overflow-x: auto;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    padding: 10px 0;
+    padding: 15px 5px; /* Espacio para que el hover no se corte */
 }
 .carrusel-track::-webkit-scrollbar { display: none; }
 
 .carrusel-item {
-    flex: 0 0 calc(33.333% - 10px); /* 3 fotos en PC */
-    aspect-ratio: 4 / 3;
-    user-select: none;
+    flex: 0 0 calc(33.333% - 15px); /* 3 fotos en PC */
+    aspect-ratio: 4 / 3; /* La altura se calcula sola según el ancho */
 }
 
 .carrusel-item img {
@@ -59,45 +59,39 @@ body { margin: 0; padding: 0; background-color: #ffffff; font-family: sans-serif
     border-radius: 10px;
     cursor: pointer;
     border: 2px solid #eee;
-    transition: all 0.3s ease; /* EFECTO SUAVE */
+    transition: all 0.3s ease;
 }
 
-/* --- TU EFECTO HOVER (SOLO EN DISPOSITIVOS CON PUNTERO) --- */
+/* EFECTO HOVER PARA PC */
 @media (hover: hover) {
     .carrusel-item img:hover {
         border-color: #cc0000;
-        transform: scale(1.05);
-        z-index: 2;
+        transform: translateY(-5px) scale(1.03);
     }
 }
 
+/* BOTONES */
 .nav-carrusel {
     position: absolute; top: 50%; transform: translateY(-50%);
-    background: rgba(204, 0, 0, 0.8); color: white; border: none;
+    background: #cc0000; color: white; border: none;
     width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;
     display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 .prev-slide { left: -20px; }
 .next-slide { right: -20px; }
 
-/* --- AJUSTE ESPECÍFICO MÓVIL --- */
+/* --- ADAPTACIÓN MÓVIL (SIN ANCHURAS FIJAS) --- */
 @media (max-width: 768px) {
     .perfil-card { flex-direction: column; }
     .perfil-img-container { max-width: 100%; height: 300px; }
-    .perfil-info h1 { font-size: 2.2rem; }
+    .perfil-info { padding: 25px; }
 
     .carrusel-item {
-        flex: 0 0 75%; /* Una foto y un trozo de la siguiente */
+        flex: 0 0 80%; /* Ocupa el 80% de CUALQUIER pantalla de móvil */
     }
 
     .nav-carrusel { width: 35px; height: 35px; }
     .prev-slide { left: 5px; }
     .next-slide { right: 5px; }
 }
-
-/* --- VISOR MODAL --- */
-#visorModal {
-    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center;
-}
-#imgGrande { max-width: 90%; max-height: 80%; border: 2px solid #cc0000; }
