@@ -1,116 +1,59 @@
-/* --- BASE --- */
-body { margin: 0; padding: 0; background-color: #ffffff; font-family: sans-serif; overflow-x: hidden; }
+const track = document.getElementById('track');
+const btnPrev = document.getElementById('btnPrev');
+const btnNext = document.getElementById('btnNext');
 
-.perfil-main {
-    padding: 20px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-}
+// Scroll de flechas
+const scroll = (direction) => {
+    const item = track.querySelector('.carrusel-item');
+    if (item) {
+        const step = item.offsetWidth + 15;
+        track.scrollBy({ left: direction * step, behavior: 'smooth' });
+    }
+};
 
-/* --- TARJETA PRINCIPAL --- */
-.perfil-card {
-    width: 100%;
-    max-width: 1100px;
-    background: #1e1e1e;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
+btnNext.onclick = () => scroll(1);
+btnPrev.onclick = () => scroll(-1);
 
-.perfil-img-container { flex: 1; max-width: 450px; background: #000; }
-.perfil-img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+// Arrastre táctil
+let isDown = false, startX, scrollLeft;
 
-.perfil-info { flex: 1.5; padding: 40px; color: white; display: flex; flex-direction: column; }
-.perfil-info h1 { font-size: 3.5rem; margin: 0; text-transform: uppercase; line-height: 1.1; }
-.perfil-info .posicion { color: #cc0000; font-weight: 900; margin: 15px 0; font-size: 1.2rem; }
-.descripcion-container { color: #ccc; line-height: 1.6; font-size: 1.1rem; }
+track.addEventListener('touchstart', (e) => {
+    isDown = true;
+    startX = e.touches[0].pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+    track.style.scrollBehavior = 'auto';
+}, {passive: true});
 
-/* --- TÍTULO GALERÍA CON LÍNEA ROJA --- */
-.galeria-title {
-    width: 100%;
-    max-width: 1100px;
-    color: #000;
-    text-transform: uppercase;
-    border-left: 5px solid #cc0000; /* LA LÍNEA ROJA */
-    padding-left: 15px;
-    margin-bottom: 20px;
-    font-weight: 900;
-    align-self: center;
-}
+track.addEventListener('touchend', () => {
+    isDown = false;
+    track.style.scrollBehavior = 'smooth';
+});
 
-/* --- CARRUSEL --- */
-.carrusel-wrapper { position: relative; width: 100%; max-width: 1100px; }
-.carrusel-track {
-    display: flex;
-    gap: 15px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    padding: 15px 5px;
-}
-.carrusel-track::-webkit-scrollbar { display: none; }
+track.addEventListener('touchmove', (e) => {
+    if(!isDown) return;
+    const x = e.touches[0].pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    track.scrollLeft = scrollLeft - walk;
+}, {passive: true});
 
-.carrusel-item {
-    flex: 0 0 calc(33.333% - 10px);
-    aspect-ratio: 16 / 9;
-}
-
-.carrusel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    cursor: pointer;
-    border: 2px solid #eee;
-    transition: all 0.3s ease;
-}
-
-/* HOVER PC */
-@media (hover: hover) {
-    .carrusel-item img:hover {
-        border-color: #cc0000;
-        transform: scale(1.05);
+// --- FUNCIÓN VER EN GRANDE (CORREGIDA) ---
+function verGrande(src) {
+    const modal = document.getElementById('visorModal');
+    const img = document.getElementById('imgGrande');
+    if (modal && img) {
+        modal.style.display = 'flex';
+        img.src = src;
+        // BLOQUEAR SCROLL DE LA PÁGINA (OPCIONAL PERO RECOMENDADO)
+        document.body.style.overflow = 'hidden';
     }
 }
 
-/* BOTONES */
-.nav-carrusel {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    background: #cc0000; color: white; border: none;
-    width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;
-    display: flex; align-items: center; justify-content: center;
-}
-.prev-slide { left: -20px; }
-.next-slide { right: -20px; }
-
-/* --- VISOR MODAL --- */
-#visorModal {
-    display: none; 
-    position: fixed; 
-    top: 0; left: 0; 
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9); 
-    z-index: 2000; 
-    justify-content: center; 
-    align-items: center;
-}
-#imgGrande { max-width: 90%; max-height: 85%; border: 2px solid #cc0000; border-radius: 5px; }
-.close-visor { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
-
-/* --- AJUSTE MÓVIL --- */
-@media (max-width: 768px) {
-    .perfil-card { flex-direction: column; }
-    .perfil-img-container { max-width: 100%; height: auto; aspect-ratio: 1/1; }
-    .perfil-info { padding: 25px; }
-    .perfil-info h1 { font-size: 2.2rem; }
-    .carrusel-item { flex: 0 0 85%; }
-    .prev-slide { left: 5px; }
-    .next-slide { right: 5px; }
-    .nav-carrusel { width: 35px; height: 35px; }
-}
+// Cerrar modal al hacer clic en cualquier parte del mismo
+document.getElementById('visorModal').onclick = function(e) {
+    // Si haces clic en la imagen, no cierres el modal
+    if (e.target !== document.getElementById('imgGrande')) {
+        this.style.display = 'none';
+        // REACTIVAR SCROLL DE LA PÁGINA
+        document.body.style.overflow = 'auto';
+    }
+};
