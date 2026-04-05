@@ -48,3 +48,20 @@
             document.getElementById('visorModal').style.display = 'flex';
             document.getElementById('imgGrande').src = src;
         }
+
+        // --- SOPORTE PARA MÓVILES (TOUCH) ---
+track.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+    track.style.scrollBehavior = 'auto';
+});
+
+track.addEventListener('touchmove', (e) => {
+    const x = e.touches[0].pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5; 
+    track.scrollLeft = scrollLeft - walk;
+});
+
+track.addEventListener('touchend', () => {
+    track.style.scrollBehavior = 'smooth';
+});
