@@ -29,7 +29,6 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* --- CONTENEDOR IMAGEN PRINCIPAL --- */
 .perfil-img-container {
     flex: 1;
     max-width: 450px;
@@ -41,11 +40,7 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
-    z-index: 1;
-    /* Imagen en fondo */
 }
-
-
 
 .perfil-info {
     flex: 1.5;
@@ -61,7 +56,8 @@ body {
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 2px;
-    line-height: 1;
+    line-height: 1.1;
+    word-wrap: break-word;
 }
 
 .perfil-info .posicion {
@@ -84,18 +80,10 @@ body {
     text-align: justify;
 }
 
-.descripcion-container::-webkit-scrollbar {
-    width: 5px;
-}
-
-.descripcion-container::-webkit-scrollbar-track {
-    background: #1e1e1e;
-}
-
-.descripcion-container::-webkit-scrollbar-thumb {
-    background: #cc0000;
-    border-radius: 10px;
-}
+/* Scrollbar personalizado */
+.descripcion-container::-webkit-scrollbar { width: 5px; }
+.descripcion-container::-webkit-scrollbar-track { background: #1e1e1e; }
+.descripcion-container::-webkit-scrollbar-thumb { background: #cc0000; border-radius: 10px; }
 
 /* --- GALERÍA --- */
 .galeria-title {
@@ -115,8 +103,6 @@ body {
     max-width: 1100px;
     margin-bottom: 50px;
     overflow: hidden;
-    /* Ocultamos el scroll físico para usar el lógico */
-    cursor: grab;
 }
 
 .carrusel-track {
@@ -125,21 +111,15 @@ body {
     overflow-x: auto;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    /* Firefox */
     padding: 10px 0;
 }
 
-.carrusel-track::-webkit-scrollbar {
-    display: none;
-}
-
-/* Chrome/Safari */
+.carrusel-track::-webkit-scrollbar { display: none; }
 
 .carrusel-item {
     min-width: calc(33.33% - 10px);
     height: 300px;
     flex-shrink: 0;
-    user-select: none;
 }
 
 .carrusel-item img {
@@ -147,15 +127,8 @@ body {
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
-    cursor: pointer;
     transition: 0.3s;
     border: 2px solid #eee;
-    pointer-events: auto;
-}
-
-.carrusel-item img:hover {
-    border-color: #cc0000;
-    transform: scale(1.02);
 }
 
 .nav-carrusel {
@@ -168,88 +141,50 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    cursor: pointer;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 }
 
-.prev-slide {
-    left: 10px;
-}
-
-.next-slide {
-    right: 10px;
-}
+.prev-slide { left: 10px; }
+.next-slide { right: 10px; }
 
 /* --- VISOR MODAL --- */
 #visorModal {
     display: none;
     position: fixed;
     z-index: 10000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.9);
     justify-content: center;
     align-items: center;
 }
 
-#imgGrande {
-    max-width: 90%;
-    max-height: 85%;
-    border: 3px solid #cc0000;
-}
+#imgGrande { max-width: 90%; max-height: 85%; border: 3px solid #cc0000; }
+.close-visor { position: absolute; top: 20px; right: 30px; color: white; font-size: 50px; cursor: pointer; }
 
-.close-visor {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 50px;
-    cursor: pointer;
-}
-
-/* --- AJUSTES PARA MÓVILES (Añadir al final del CSS) --- */
-
+/* --- AJUSTES PARA MÓVILES --- */
 @media (max-width: 768px) {
     .perfil-card {
-        flex-direction: column;
-        /* Imagen arriba, texto abajo */
-        max-height: none;
-        /* Permitir que crezca según el contenido */
+        flex-direction: column; /* Tarjeta vertical */
+        max-height: none; 
         min-height: auto;
     }
 
     .perfil-img-container {
         max-width: 100%;
-        /* La imagen ocupa todo el ancho */
-        height: 350px;
-        /* Altura fija para la foto en móvil */
+        height: 350px; /* Foto arriba */
     }
 
-    .perfil-info {
-        padding: 20px;
-        /* Menos espacio lateral */
-    }
+    .perfil-info { padding: 20px; }
+    .perfil-info h1 { font-size: 2.2rem; } /* Evita corte de nombre */
 
-    .perfil-info h1 {
-        font-size: 2.5rem;
-        /* Nombre un poco más pequeño */
-    }
-
-    /* Carrusel: que se vea 1 foto y media para invitar a deslizar */
     .carrusel-item {
-        min-width: calc(80% - 10px);
+        min-width: 85%; /* Imagen legible en móvil */
         height: 250px;
     }
 
-    /* Ocultar flechas en móvil (es mejor deslizar con el dedo) */
-    .nav-carrusel {
-        display: none;
-    }
+    .nav-carrusel { display: none; } /* Navegación táctil */
 }
