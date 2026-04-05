@@ -142,25 +142,26 @@ body { margin: 0; padding: 0; background-color: #ffffff; font-family: sans-serif
 
 /* --- RESPONSIVE MÓVIL --- */
 @media (max-width: 768px) {
-    .perfil-card {
-        flex-direction: column;
-        max-height: none;
-        min-height: auto;
-    }
-    .perfil-img-container {
-        max-width: 100%;
-        height: 350px;
-    }
-    .perfil-info h1 { font-size: 2.2rem; }
-    
+    /* ... (mantén lo de la perfil-card igual) ... */
+
     .carrusel-item {
-        min-width: 85%; /* Muestra casi toda la foto */
-        height: 250px;
+        /* Bajamos el ancho al 70% para que se vean las fotos de los lados */
+        min-width: 70%; 
+        /* Bajamos la altura para que no sea una imagen gigante */
+        height: 200px; 
+        flex-shrink: 0;
     }
-    
+
+    .carrusel-item img {
+        /* Importante: contain asegura que se vea la foto entera, 
+           cover la recorta para llenar el hueco. Elige la que prefieras. */
+        object-fit: cover; 
+    }
+
     .nav-carrusel {
-        width: 35px;
-        height: 35px;
-        background: rgba(204, 0, 0, 0.9); /* Más visible sobre la foto */
+        /* Hacemos las flechas un poco más pequeñas para que no tapen tanto */
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
     }
 }
