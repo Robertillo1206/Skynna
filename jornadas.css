@@ -1,0 +1,140 @@
+.calendario-main {
+    background-color: #ffffff;
+    padding: 40px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.report-container {
+    width: 100%;
+    max-width: 800px;
+    background: #1e1e1e;
+    border-radius: 12px;
+    padding: 30px;
+    border: 1px solid #333;
+    color: #fff;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+
+.match-summary {
+    width: 100%;
+    border-bottom: 1px solid #444;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* ESTILO DEL MARCADOR CABECERA */
+.main-scoreboard {
+    display: grid;
+    grid-template-columns: 1fr 120px 1fr; /* 120px fijos pal resultado en el centro */
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.score-team-home {
+    text-align: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    padding-right: 15px;
+}
+
+.score-team-away {
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    padding-left: 15px;
+}
+
+.score-number {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #ffffff;
+    background: #333; /* Un gris oscuro para que resalte el marcador */
+    border-radius: 6px;
+    padding: 5px 0;
+    text-align: center;
+}
+
+.match-date {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-top: 15px;
+}
+
+/* Resto de estilos de goles */
+.goals-header {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: #cc0000;
+    margin-bottom: 20px;
+}
+
+.goals-board {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.goal-entry {
+    display: grid;
+    grid-template-columns: 1fr 85px 1fr;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.goal-left { text-align: right; padding-right: 20px; color: #bbb; }
+.goal-right { text-align: left; padding-left: 20px; color: #fff; font-weight: bold; }
+.goal-score { 
+    background: #cc0000; 
+    color: #fff;
+    border-radius: 4px; 
+    font-weight: 900; 
+    padding: 6px 0;
+    text-align: center;
+}
+
+.mvp-section {
+    background: #000;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-left: 5px solid #cc0000;
+}
+
+.mvp-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #cc0000;
+    object-fit: cover;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 30px;
+    color: #cc0000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+/* Ajuste móvil */
+@media (max-width: 600px) {
+    .main-scoreboard {
+        grid-template-columns: 1fr 80px 1fr;
+    }
+    .score-team-home, .score-team-away { font-size: 1rem; }
+    .score-number { font-size: 1.4rem; }
+}
