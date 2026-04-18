@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clasificación - Skynna FC</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .clasificacion-main {
+            background-color: #ffffff;
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 40px 0 20px 0;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        /* Contenedor del Iframe */
+        .iframe-container {
+            width: 100%;
+            max-width: 1100px;
+            height: 800px; /* Ajusta la altura según necesites */
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .aviso-liga {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html">
+                <img src="escudo.png" alt="Logo Skynna FC" class="main-logo">
+            </a>
+            <h1>SKYNNA FC</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="calendario.html">CALENDARIO</a></li>
+            <li><a href="plantilla.html">PLANTILLA</a></li>
+            <li><a href="tercer tiempo.html">TERCER TIEMPO</a></li>
+            <li><a href="estadisticas.html">ESTADÍSTICAS</a></li>
+            <li><a href="clasificacion.html" class="active">CLASIFICACIÓN</a></li>
+        </ul>
+    </nav>
+
+    <main class="clasificacion-main">
+        <h2 class="section-title">Clasificación Oficial</h2>
+        
+        <div class="iframe-container">
+            <iframe src="https://ligaudarroyofresno.mygol.es/tournaments/12?tab=classification&stage=0"></iframe>
+        </div>
+
+        <p class="aviso-liga">Datos actualizados automáticamente por la liga UD Arroyo Fresno</p>
+    </main>
+
+</body>
+</html>
