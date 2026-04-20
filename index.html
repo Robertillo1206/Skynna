@@ -52,7 +52,7 @@
 
         /* --- ESTILOS PARA AMPLIAR LAS FOTOS (MODAL) --- */
         .photo-item img {
-            cursor: pointer; /* Indica que se puede hacer clic */
+            cursor: pointer;
             transition: opacity 0.3s;
         }
         
@@ -63,7 +63,7 @@
         .modal-zoom {
             display: none; 
             position: fixed;
-            z-index: 10000; /* Por encima de todo */
+            z-index: 10000;
             top: 0;
             left: 0;
             width: 100%;
@@ -95,13 +95,50 @@
             font-size: 40px;
             font-weight: bold;
         }
+
+        /* --- AJUSTE PARA CENTRADO ABSOLUTO DEL VS --- */
+        .match-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            max-width: 600px; /* O el ancho que tenga tu card en style.css */
+            margin: 0 auto;
+        }
+
+        .teams-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr; /* Tres columnas: el VS ocupa solo su espacio, los lados crecen igual */
+            align-items: center;
+            width: 100%;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .team {
+            font-weight: bold;
+        }
+
+        /* Alineamos el equipo de la izquierda a la derecha y el de la derecha a la izquierda */
+        .team:first-child { text-align: right; }
+        .team:last-child { text-align: left; }
+
+        .vs {
+            font-weight: bold;
+            background: #ff0000; /* Color de ejemplo, cámbialo si quieres */
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            min-width: 40px;
+        }
     </style>
 </head>
 <body>
     <header><div class="header-content"><img src="escudo.png" class="main-logo"><h1>SKYNNA CF</h1></div></header>
     <nav>
         <ul>
-            <li><a href="#index.html">INICIO</a></li>
+            <li><a href="index.html">INICIO</a></li>
             <li><a href="calendario.html">CALENDARIO</a></li>
             <li><a href="plantilla.html">PLANTILLA</a></li>
             <li><a href="tercer tiempo.html">TERCER TIEMPO</a></li>
@@ -114,8 +151,17 @@
             <h2 class="section-title">PRÓXIMO ENCUENTRO</h2>
             <div class="match-card">
                 <p>Jornada 22</p>
-                <div class="team">U.D. Valdebirra</div><div class="vs">VS</div><div class="team">Skynna CF</div>
-                <div class="match-details"><p>- - de abril | -:-h</p><p>Estadio Municipal Arroyofresno</p></div>
+                
+                <div class="teams-container">
+                    <div class="team">U.D. Valdebirra</div>
+                    <div class="vs">VS</div>
+                    <div class="team">Skynna CF</div>
+                </div>
+
+                <div class="match-details">
+                    <p>- - de abril | -:-h</p>
+                    <p>Estadio Municipal Arroyofresno</p>
+                </div>
             </div>
         </section>
 
@@ -169,7 +215,6 @@
     <script src="script.js"></script>
     
     <script>
-        // SCRIPT PARA AMPLIAR LAS FOTOS DEL CARRUSEL
         const zoomContainer = document.getElementById('zoomContainer');
         const imgAmpliada = document.getElementById('imgAmpliada');
         const carouselPhotos = document.querySelectorAll('.photo-item img');
@@ -181,7 +226,6 @@
             });
         });
 
-        // Cerrar al hacer clic en cualquier parte del modal
         zoomContainer.addEventListener('click', () => {
             zoomContainer.style.display = 'none';
         });
