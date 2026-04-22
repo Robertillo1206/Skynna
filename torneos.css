@@ -1,0 +1,143 @@
+        .tournaments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 20px;
+        }
+
+        .tournament-card-link {
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease;
+        }
+
+        .tournament-card-link:hover {
+            transform: translateY(-10px);
+        }
+
+        .t-card {
+            background: #1e1e1e;
+            border-radius: 15px;
+            border: 1px solid #333;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .t-card:hover {
+            border-color: #cc0000;
+            box-shadow: 0 10px 30px rgba(204, 0, 0, 0.2);
+        }
+
+        .t-card-img {
+            width: 100%;
+            height: 150px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 3px solid #cc0000;
+        }
+
+        .t-card-img img {
+            height: 80%;
+            opacity: 0.8;
+        }
+
+        .t-card-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .t-card-info h3 {
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .t-card-info p {
+            color: #aaa;
+            font-size: 0.85rem;
+            margin: 10px 0;
+        }
+
+        .btn-ver {
+            display: inline-block;
+            margin-top: 10px;
+            color: #cc0000;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+        /* Estilos específicos para el detalle del torneo */
+.t-stats {
+    display: flex;
+    justify-content: space-around;
+    background: #000;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #cc0000;
+}
+
+.t-stats div {
+    text-align: center;
+}
+
+.t-stats b {
+    display: block;
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.t-stats label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #777;
+}
+
+.matches-list {
+    width: 100%;
+    border-spacing: 0;
+    margin-top: 20px;
+}
+
+.matches-list th {
+    color: #cc0000;
+    text-align: left;
+    padding: 10px;
+    font-size: 0.8rem;
+    border-bottom: 1px solid #444;
+}
+
+.matches-list td {
+    padding: 15px 10px;
+    border-bottom: 1px solid #2a2a2a;
+    color: #fff;
+}
+
+.res-pill {
+    background: #333;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* COLORES DE RESULTADOS */
+.ganado {
+    color: #00ff00 !important; /* Verde brillante */
+    border: 1px solid #00ff0033;
+}
+
+.perdido {
+    color: #ff4444 !important; /* Rojo */
+    border: 1px solid #ff444433;
+}
+
+.empate {
+    color: #ffffff !important; /* Blanco (como lo tenías) */
+}
