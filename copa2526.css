@@ -1,0 +1,130 @@
+/* Contenedor general de la estructura del torneo */
+.bracket-container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    width: 100%;
+    max-width: 1300px;
+    overflow-x: auto; /* Scroll horizontal si faltan pantallas */
+    padding: 20px 10px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+/* Scrollbar personalizado para que no rompa la estética oscura de la web */
+.bracket-container::-webkit-scrollbar {
+    height: 8px;
+}
+.bracket-container::-webkit-scrollbar-thumb {
+    background: #cc0000;
+    border-radius: 4px;
+}
+.bracket-container::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+/* Rondas / Columnas */
+.bracket-round {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    flex: 1;
+    min-width: 240px;
+}
+
+/* Títulos de las fases de clasificación */
+.round-title {
+    text-align: center;
+    color: #cc0000;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 8px;
+}
+
+/* Bloque contenedor del encuentro */
+.bracket-match {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Destacar el partido decisivo de la final */
+.final-match {
+    border: 2px solid #cc0000;
+    box-shadow: 0 0 25px rgba(204, 0, 0, 0.25);
+}
+
+/* Filas internas de los equipos */
+.bracket-team {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    border-bottom: 1px solid #2a2a2a;
+    color: #bbb;
+}
+
+.bracket-team:last-child {
+    border-bottom: none;
+}
+
+/* Escudos redondeados alineados */
+.bracket-team img {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 12px;
+    background: #000;
+}
+
+/* Nombre de los clubes */
+.team-name {
+    flex-grow: 1;
+    font-size: 0.9rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Bloque numérico del resultado */
+.team-score {
+    font-family: monospace;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #fff;
+    background: #2a2a2a;
+    padding: 3px 9px;
+    border-radius: 4px;
+    min-width: 16px;
+    text-align: center;
+}
+
+/* Marcados en verde para el equipo clasificado a la siguiente ronda */
+.bracket-team.won {
+    color: #fff;
+    background: rgba(0, 255, 0, 0.03);
+}
+
+.bracket-team.won .team-score {
+    color: #00ff00;
+    background: #111;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+/* Móvil: Cambio dinámico a flujo vertical para evitar atascos de pantalla */
+@media (max-width: 900px) {
+    .bracket-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .bracket-round {
+        margin-bottom: 35px;
+    }
+}
